@@ -1,18 +1,1154 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terveyskysely</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Toisen asteen opiskelijoiden terveyskysely</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    :root {
+        --primary: #005b73;
+        --primary-dark: #003f52;
+        --light: #eef5f6;
+        --border: #b8c7cb;
+        --text: #20292c;
+        --muted: #59686d;
+    }
+
+    body {
+        margin: 0;
+        background: #dfe4e6;
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .demo-banner {
+        background: #263238;
+        color: white;
+        text-align: center;
+        padding: 9px 15px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: .4px;
+    }
+
+    .toolbar {
+        max-width: 210mm;
+        margin: 22px auto 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        font-size: 14px;
+    }
+
+    .toolbar button,
+    .navigation button,
+    .print-button {
+        border: 0;
+        background: var(--primary);
+        color: white;
+        padding: 11px 20px;
+        border-radius: 3px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: var(--primary-dark);
+    }
+
+    button:disabled {
+        background: #aab4b7;
+        cursor: default;
+    }
+
+    .paper {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto 30px;
+        background: white;
+        box-shadow: 0 3px 18px rgba(0,0,0,.18);
+        padding: 17mm 18mm 15mm;
+        position: relative;
+    }
+
+    .page {
+        display: none;
+        min-height: 250mm;
+    }
+
+    .page.active {
+        display: block;
+    }
+
+    .header {
+        border-bottom: 3px solid var(--primary);
+        padding-bottom: 13px;
+        margin-bottom: 25px;
+    }
+
+    .header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 25px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+    }
+
+    .brand-symbol {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: -1px;
+    }
+
+    .brand-name {
+        font-size: 19px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .brand-unit {
+        color: var(--muted);
+        margin-top: 3px;
+        font-size: 13px;
+    }
+
+    .document-info {
+        text-align: right;
+        font-size: 12px;
+        line-height: 1.55;
+        color: var(--muted);
+    }
+
+    .document-info strong {
+        color: var(--text);
+    }
+
+    h1 {
+        font-size: 25px;
+        margin: 28px 0 5px;
+        color: var(--primary-dark);
+    }
+
+    .subtitle {
+        color: var(--muted);
+        margin: 0;
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 19px;
+        color: var(--primary-dark);
+        margin: 5px 0 18px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    h3 {
+        font-size: 15px;
+        margin: 25px 0 12px;
+        color: var(--primary-dark);
+    }
+
+    .instruction {
+        background: var(--light);
+        border-left: 4px solid var(--primary);
+        padding: 13px 15px;
+        margin: 0 0 23px;
+        font-size: 13px;
+        line-height: 1.55;
+    }
+
+    .question {
+        margin-bottom: 19px;
+    }
+
+    .question label.question-label {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 7px;
+        line-height: 1.4;
+    }
+
+    .question-number {
+        color: var(--primary);
+        margin-right: 5px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    textarea,
+    select {
+        width: 100%;
+        border: 1px solid #98aaaf;
+        border-radius: 2px;
+        padding: 9px 10px;
+        font-family: inherit;
+        font-size: 14px;
+        background: white;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 72px;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: 2px solid rgba(0,91,115,.20);
+        border-color: var(--primary);
+    }
+
+    .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+    }
+
+    .options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px 18px;
+        padding-top: 2px;
+    }
+
+    .options label {
+        font-size: 13px;
+        font-weight: normal;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+        accent-color: var(--primary);
+        width: 16px;
+        height: 16px;
+    }
+
+    .section-box {
+        border: 1px solid var(--border);
+        padding: 16px;
+        margin-bottom: 18px;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 10mm;
+        left: 18mm;
+        right: 18mm;
+        border-top: 1px solid #c7d0d2;
+        padding-top: 7px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        color: #69777b;
+    }
+
+    .navigation {
+        max-width: 210mm;
+        margin: -10px auto 35px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navigation .secondary {
+        background: #59686d;
+    }
+
+    .progress-wrapper {
+        flex: 1;
+        max-width: 350px;
+        margin: 0 20px;
+    }
+
+    .progress {
+        width: 100%;
+        height: 6px;
+        background: #c8d0d2;
+        overflow: hidden;
+        border-radius: 5px;
+    }
+
+    .progress-bar {
+        height: 100%;
+        background: var(--primary);
+        width: 12.5%;
+        transition: width .25s ease;
+    }
+
+    .progress-text {
+        text-align: center;
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 5px;
+    }
+
+    .summary {
+        font-size: 12px;
+    }
+
+    .summary-row {
+        display: grid;
+        grid-template-columns: 42% 58%;
+        border-bottom: 1px solid #d5dddf;
+        padding: 8px 0;
+        gap: 12px;
+    }
+
+    .summary-row strong {
+        color: #37474b;
+    }
+
+    .privacy-note {
+        font-size: 11px;
+        color: #5f6d71;
+        line-height: 1.5;
+        margin-top: 25px;
+    }
+
+    .print-button {
+        margin-top: 18px;
+    }
+
+    @media (max-width: 850px) {
+        .paper {
+            width: calc(100% - 20px);
+            min-height: auto;
+            margin: 10px;
+            padding: 25px 20px 70px;
+        }
+
+        .page {
+            min-height: auto;
+        }
+
+        .toolbar,
+        .navigation {
+            width: calc(100% - 20px);
+        }
+
+        .row {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        .header-top {
+            flex-direction: column;
+        }
+
+        .document-info {
+            text-align: left;
+        }
+
+        .footer {
+            left: 20px;
+            right: 20px;
+            bottom: 18px;
+        }
+    }
+
+    @media print {
+        body {
+            background: white;
+        }
+
+        .demo-banner,
+        .toolbar,
+        .navigation,
+        .print-button {
+            display: none !important;
+        }
+
+        .paper {
+            width: 100%;
+            margin: 0;
+            box-shadow: none;
+            padding: 12mm 15mm;
+        }
+
+        .page {
+            display: none !important;
+        }
+
+        .page.active {
+            display: block !important;
+        }
+    }
+</style>
 </head>
 
 <body>
-    <h1>Toisen asteen opiskelijoiden terveyskysely</h1>
 
-    <p>
-        Tervetuloa opiskeluterveydenhuollon terveyskyselyyn.
+<div class="demo-banner">
+    HARJOITUS / ROOLIPELI — EI OIKEA TERVEYDENHUOLLON ASIOINTIPALVELU
+</div>
+
+<div class="toolbar">
+    <strong>Toisen asteen opiskelijoiden terveyskysely</strong>
+    <span id="topPage">Sivu 1 / 8</span>
+</div>
+
+<main class="paper">
+
+<form id="healthForm">
+
+<!-- SIVU 1 -->
+<section class="page active">
+
+    <header class="header">
+        <div class="header-top">
+            <div class="brand">
+                <div class="brand-symbol">HY</div>
+                <div>
+                    <div class="brand-name">Keski-Suomen hyvinvointialue</div>
+                    <div class="brand-unit">Opiskeluterveydenhuolto</div>
+                </div>
+            </div>
+
+            <div class="document-info">
+                <strong>Muuramen lukio</strong><br>
+                27.09.2026<br>
+                Terveyskysely
+            </div>
+        </div>
+
+        <h1>Toisen asteen opiskelijoiden terveyskysely</h1>
+        <p class="subtitle">Opiskeluterveydenhuollon terveystarkastusta varten</p>
+    </header>
+
+    <h2>1. Opiskelijan perustiedot</h2>
+
+    <div class="instruction">
+        Täytä kysely mahdollisimman huolellisesti. Tämä verkkolomake on
+        harjoitus- ja roolipeliversio eikä lähetä tietoja Keski-Suomen
+        hyvinvointialueelle tai muulle terveydenhuollon toimijalle.
+    </div>
+
+    <div class="row">
+        <div class="question">
+            <label class="question-label">
+                <span class="question-number">1.1</span> Etu- ja sukunimi
+            </label>
+            <input type="text" name="Nimi">
+        </div>
+
+        <div class="question">
+            <label class="question-label">
+                <span class="question-number">1.2</span> Syntymäaika
+            </label>
+            <input type="date" name="Syntymäaika">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="question">
+            <label class="question-label">
+                <span class="question-number">1.3</span> Oppilaitos
+            </label>
+            <input type="text" name="Oppilaitos" value="Muuramen lukio">
+        </div>
+
+        <div class="question">
+            <label class="question-label">
+                <span class="question-number">1.4</span> Ryhmä / vuosikurssi
+            </label>
+            <input type="text" name="Ryhmä">
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label">
+            <span class="question-number">1.5</span> Puhelinnumero
+        </label>
+        <input type="text" name="Puhelinnumero">
+    </div>
+
+    <div class="question">
+        <label class="question-label">
+            <span class="question-number">1.6</span> Miten arvioit terveydentilasi tällä hetkellä?
+        </label>
+
+        <div class="options">
+            <label><input type="radio" name="Terveydentila" value="Erittäin hyvä"> Erittäin hyvä</label>
+            <label><input type="radio" name="Terveydentila" value="Hyvä"> Hyvä</label>
+            <label><input type="radio" name="Terveydentila" value="Kohtalainen"> Kohtalainen</label>
+            <label><input type="radio" name="Terveydentila" value="Huono"> Huono</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label">
+            <span class="question-number">1.7</span> Onko sinulla tällä hetkellä terveyteesi liittyviä huolia?
+        </label>
+
+        <div class="options">
+            <label><input type="radio" name="Terveyshuolia" value="Kyllä"> Kyllä</label>
+            <label><input type="radio" name="Terveyshuolia" value="Ei"> Ei</label>
+            <label><input type="radio" name="Terveyshuolia" value="En osaa sanoa"> En osaa sanoa</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label">Jos vastasit kyllä, kerro halutessasi tarkemmin.</label>
+        <textarea name="Terveyshuolien tarkennus"></textarea>
+    </div>
+
+    <div class="footer">
+        <span>Keski-Suomen hyvinvointialue • harjoituslomake</span>
+        <span>Sivu 1 / 8</span>
+    </div>
+</section>
+
+
+<!-- SIVU 2 -->
+<section class="page">
+
+    <header class="header">
+        <div class="header-top">
+            <div class="brand">
+                <div class="brand-symbol">HY</div>
+                <div>
+                    <div class="brand-name">Keski-Suomen hyvinvointialue</div>
+                    <div class="brand-unit">Opiskeluterveydenhuolto</div>
+                </div>
+            </div>
+            <div class="document-info"><strong>Muuramen lukio</strong><br>27.09.2026</div>
+        </div>
+    </header>
+
+    <h2>2. Terveys, sairaudet ja lääkitys</h2>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">2.1</span> Onko sinulla todettu pitkäaikaissairauksia?</label>
+        <div class="options">
+            <label><input type="radio" name="Pitkäaikaissairaus" value="Kyllä"> Kyllä</label>
+            <label><input type="radio" name="Pitkäaikaissairaus" value="Ei"> Ei</label>
+            <label><input type="radio" name="Pitkäaikaissairaus" value="En tiedä"> En tiedä</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label">Mitä sairauksia tai terveydentilaan liittyviä asioita?</label>
+        <textarea name="Sairaudet"></textarea>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">2.2</span> Onko sinulla säännöllistä lääkitystä?</label>
+        <div class="options">
+            <label><input type="radio" name="Lääkitys" value="Kyllä"> Kyllä</label>
+            <label><input type="radio" name="Lääkitys" value="Ei"> Ei</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label">Lääkkeet ja annostus</label>
+        <textarea name="Lääkkeet"></textarea>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">2.3</span> Onko sinulla allergioita?</label>
+        <div class="options">
+            <label><input type="radio" name="Allergiat" value="Kyllä"> Kyllä</label>
+            <label><input type="radio" name="Allergiat" value="Ei"> Ei</label>
+            <label><input type="radio" name="Allergiat" value="En tiedä"> En tiedä</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label">Allergiat / yliherkkyydet</label>
+        <textarea name="Allergioiden tarkennus"></textarea>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">2.4</span> Onko sinulla ollut viimeisen vuoden aikana toistuvia kipuja tai muita oireita?</label>
+        <div class="options">
+            <label><input type="radio" name="Toistuvat oireet" value="Kyllä"> Kyllä</label>
+            <label><input type="radio" name="Toistuvat oireet" value="Ei"> Ei</label>
+            <label><input type="radio" name="Toistuvat oireet" value="Joskus"> Joskus</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label">Kuvaile oireita tarvittaessa.</label>
+        <textarea name="Oireiden kuvaus"></textarea>
+    </div>
+
+    <div class="footer">
+        <span>Keski-Suomen hyvinvointialue • harjoituslomake</span>
+        <span>Sivu 2 / 8</span>
+    </div>
+</section>
+
+
+<!-- SIVU 3 -->
+<section class="page">
+
+    <header class="header">
+        <div class="header-top">
+            <div class="brand">
+                <div class="brand-symbol">HY</div>
+                <div>
+                    <div class="brand-name">Keski-Suomen hyvinvointialue</div>
+                    <div class="brand-unit">Opiskeluterveydenhuolto</div>
+                </div>
+            </div>
+            <div class="document-info"><strong>Muuramen lukio</strong><br>27.09.2026</div>
+        </div>
+    </header>
+
+    <h2>3. Uni ja palautuminen</h2>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">3.1</span> Kuinka monta tuntia nukut tavallisesti arkisin?</label>
+        <input type="text" name="Unen määrä" placeholder="Esim. 8 tuntia">
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">3.2</span> Koetko saavasi riittävästi unta?</label>
+        <div class="options">
+            <label><input type="radio" name="Riittävä uni" value="Kyllä"> Kyllä</label>
+            <label><input type="radio" name="Riittävä uni" value="Ei"> Ei</label>
+            <label><input type="radio" name="Riittävä uni" value="Useimmiten"> Useimmiten</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">3.3</span> Onko sinulla vaikeuksia nukahtaa?</label>
+        <div class="options">
+            <label><input type="radio" name="Nukahtamisvaikeudet" value="Ei"> Ei</label>
+            <label><input type="radio" name="Nukahtamisvaikeudet" value="Joskus"> Joskus</label>
+            <label><input type="radio" name="Nukahtamisvaikeudet" value="Usein"> Usein</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">3.4</span> Tunnetko itsesi virkeäksi aamuisin?</label>
+        <div class="options">
+            <label><input type="radio" name="Aamuvirkeys" value="Kyllä"> Kyllä</label>
+            <label><input type="radio" name="Aamuvirkeys" value="Joskus"> Joskus</label>
+            <label><input type="radio" name="Aamuvirkeys" value="En"> En</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">3.5</span> Onko sinulla muita uneen tai palautumiseen liittyviä asioita, joista haluaisit keskustella?</label>
+        <textarea name="Uni lisätiedot"></textarea>
+    </div>
+
+    <div class="footer">
+        <span>Keski-Suomen hyvinvointialue • harjoituslomake</span>
+        <span>Sivu 3 / 8</span>
+    </div>
+</section>
+
+
+<!-- SIVU 4 -->
+<section class="page">
+
+    <header class="header">
+        <div class="header-top">
+            <div class="brand">
+                <div class="brand-symbol">HY</div>
+                <div>
+                    <div class="brand-name">Keski-Suomen hyvinvointialue</div>
+                    <div class="brand-unit">Opiskeluterveydenhuolto</div>
+                </div>
+            </div>
+            <div class="document-info"><strong>Muuramen lukio</strong><br>27.09.2026</div>
+        </div>
+    </header>
+
+    <h2>4. Ravitsemus ja liikunta</h2>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">4.1</span> Syötkö aamupalan koulupäivinä?</label>
+        <div class="options">
+            <label><input type="radio" name="Aamupala" value="Päivittäin"> Päivittäin</label>
+            <label><input type="radio" name="Aamupala" value="Useimpina päivinä"> Useimpina päivinä</label>
+            <label><input type="radio" name="Aamupala" value="Harvoin"> Harvoin</label>
+            <label><input type="radio" name="Aamupala" value="En koskaan"> En koskaan</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">4.2</span> Syötkö koululounaan?</label>
+        <div class="options">
+            <label><input type="radio" name="Koululounas" value="Päivittäin"> Päivittäin</label>
+            <label><input type="radio" name="Koululounas" value="Useimmiten"> Useimmiten</label>
+            <label><input type="radio" name="Koululounas" value="Harvoin"> Harvoin</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">4.3</span> Kuinka usein harrastat liikuntaa tai muuta fyysistä aktiivisuutta?</label>
+        <select name="Liikunta">
+            <option value="">Valitse</option>
+            <option>Päivittäin</option>
+            <option>4–6 kertaa viikossa</option>
+            <option>2–3 kertaa viikossa</option>
+            <option>Noin kerran viikossa</option>
+            <option>Harvemmin</option>
+        </select>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">4.4</span> Millaisesta liikunnasta pidät?</label>
+        <textarea name="Liikuntamuodot"></textarea>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">4.5</span> Onko syömiseen, ruokahaluun tai ravitsemukseen liittyviä asioita, joista haluaisit keskustella?</label>
+        <textarea name="Ravitsemus lisätiedot"></textarea>
+    </div>
+
+    <div class="footer">
+        <span>Keski-Suomen hyvinvointialue • harjoituslomake</span>
+        <span>Sivu 4 / 8</span>
+    </div>
+</section>
+
+
+<!-- SIVU 5 -->
+<section class="page">
+
+    <header class="header">
+        <div class="header-top">
+            <div class="brand">
+                <div class="brand-symbol">HY</div>
+                <div>
+                    <div class="brand-name">Keski-Suomen hyvinvointialue</div>
+                    <div class="brand-unit">Opiskeluterveydenhuolto</div>
+                </div>
+            </div>
+            <div class="document-info"><strong>Muuramen lukio</strong><br>27.09.2026</div>
+        </div>
+    </header>
+
+    <h2>5. Opiskelu ja jaksaminen</h2>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">5.1</span> Miten opintosi ovat mielestäsi lähteneet käyntiin?</label>
+        <select name="Opintojen sujuminen">
+            <option value="">Valitse</option>
+            <option>Erittäin hyvin</option>
+            <option>Hyvin</option>
+            <option>Kohtalaisesti</option>
+            <option>Heikosti</option>
+        </select>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">5.2</span> Koetko opiskeluun liittyvää stressiä?</label>
+        <div class="options">
+            <label><input type="radio" name="Opiskelustressi" value="En lainkaan"> En lainkaan</label>
+            <label><input type="radio" name="Opiskelustressi" value="Jonkin verran"> Jonkin verran</label>
+            <label><input type="radio" name="Opiskelustressi" value="Paljon"> Paljon</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">5.3</span> Onko sinulla koulussa kavereita tai muita ihmisiä, joiden kanssa voit viettää aikaa?</label>
+        <div class="options">
+            <label><input type="radio" name="Kaverit" value="Kyllä"> Kyllä</label>
+            <label><input type="radio" name="Kaverit" value="Jonkin verran"> Jonkin verran</label>
+            <label><input type="radio" name="Kaverit" value="Ei"> Ei</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">5.4</span> Onko koulunkäyntiin liittynyt poissaoloja, keskittymisvaikeuksia tai muuta huolta?</label>
+        <textarea name="Opiskelun haasteet"></textarea>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">5.5</span> Miten kuvailisit tämänhetkistä jaksamistasi?</label>
+        <textarea name="Jaksaminen"></textarea>
+    </div>
+
+    <div class="footer">
+        <span>Keski-Suomen hyvinvointialue • harjoituslomake</span>
+        <span>Sivu 5 / 8</span>
+    </div>
+</section>
+
+
+<!-- SIVU 6 -->
+<section class="page">
+
+    <header class="header">
+        <div class="header-top">
+            <div class="brand">
+                <div class="brand-symbol">HY</div>
+                <div>
+                    <div class="brand-name">Keski-Suomen hyvinvointialue</div>
+                    <div class="brand-unit">Opiskeluterveydenhuolto</div>
+                </div>
+            </div>
+            <div class="document-info"><strong>Muuramen lukio</strong><br>27.09.2026</div>
+        </div>
+    </header>
+
+    <h2>6. Hyvinvointi ja mieliala</h2>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">6.1</span> Millaiseksi arvioit mielialasi viime viikkojen aikana?</label>
+        <select name="Mieliala">
+            <option value="">Valitse</option>
+            <option>Erittäin hyvä</option>
+            <option>Hyvä</option>
+            <option>Vaihtelevaksi</option>
+            <option>Melko matala</option>
+            <option>Matala</option>
+        </select>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">6.2</span> Oletko tuntenut itsesi yksinäiseksi?</label>
+        <div class="options">
+            <label><input type="radio" name="Yksinäisyys" value="En"> En</label>
+            <label><input type="radio" name="Yksinäisyys" value="Joskus"> Joskus</label>
+            <label><input type="radio" name="Yksinäisyys" value="Usein"> Usein</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">6.3</span> Onko sinulla turvallinen aikuinen, jonka kanssa voit keskustella asioistasi?</label>
+        <div class="options">
+            <label><input type="radio" name="Turvallinen aikuinen" value="Kyllä"> Kyllä</label>
+            <label><input type="radio" name="Turvallinen aikuinen" value="Ei"> Ei</label>
+            <label><input type="radio" name="Turvallinen aikuinen" value="En osaa sanoa"> En osaa sanoa</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">6.4</span> Mitkä asiat tukevat hyvinvointiasi tällä hetkellä?</label>
+        <textarea name="Hyvinvointia tukevat asiat"></textarea>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">6.5</span> Onko mielialaan tai hyvinvointiin liittyvää asiaa, jonka haluaisit ottaa terveystarkastuksessa esille?</label>
+        <textarea name="Hyvinvoinnin keskustelutoive"></textarea>
+    </div>
+
+    <div class="footer">
+        <span>Keski-Suomen hyvinvointialue • harjoituslomake</span>
+        <span>Sivu 6 / 8</span>
+    </div>
+</section>
+
+
+<!-- SIVU 7 -->
+<section class="page">
+
+    <header class="header">
+        <div class="header-top">
+            <div class="brand">
+                <div class="brand-symbol">HY</div>
+                <div>
+                    <div class="brand-name">Keski-Suomen hyvinvointialue</div>
+                    <div class="brand-unit">Opiskeluterveydenhuolto</div>
+                </div>
+            </div>
+            <div class="document-info"><strong>Muuramen lukio</strong><br>27.09.2026</div>
+        </div>
+    </header>
+
+    <h2>7. Terveystottumukset ja muut terveyskysymykset</h2>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">7.1</span> Käytätkö nikotiinituotteita?</label>
+        <div class="options">
+            <label><input type="radio" name="Nikotiini" value="En"> En</label>
+            <label><input type="radio" name="Nikotiini" value="Joskus"> Joskus</label>
+            <label><input type="radio" name="Nikotiini" value="Säännöllisesti"> Säännöllisesti</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">7.2</span> Käytätkö alkoholia?</label>
+        <div class="options">
+            <label><input type="radio" name="Alkoholi" value="En"> En</label>
+            <label><input type="radio" name="Alkoholi" value="Harvoin"> Harvoin</label>
+            <label><input type="radio" name="Alkoholi" value="Joskus"> Joskus</label>
+            <label><input type="radio" name="Alkoholi" value="Usein"> Usein</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">7.3</span> Haluaisitko keskustella seksuaaliterveyteen tai ehkäisyyn liittyvistä asioista?</label>
+        <div class="options">
+            <label><input type="radio" name="Seksuaaliterveys" value="Kyllä"> Kyllä</label>
+            <label><input type="radio" name="Seksuaaliterveys" value="Ei"> Ei</label>
+            <label><input type="radio" name="Seksuaaliterveys" value="Ehkä"> Ehkä</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">7.4</span> Onko rokotussuojaasi liittyen jotain epäselvää?</label>
+        <div class="options">
+            <label><input type="radio" name="Rokotukset" value="Kyllä"> Kyllä</label>
+            <label><input type="radio" name="Rokotukset" value="Ei"> Ei</label>
+            <label><input type="radio" name="Rokotukset" value="En tiedä"> En tiedä</label>
+        </div>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">7.5</span> Mitä asioita toivot käsiteltävän terveystarkastuksessa?</label>
+        <textarea name="Terveystarkastuksen toiveet"></textarea>
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="question-number">7.6</span> Muut tiedot, jotka haluat kertoa terveydenhoitajalle</label>
+        <textarea name="Muut tiedot"></textarea>
+    </div>
+
+    <div class="footer">
+        <span>Keski-Suomen hyvinvointialue • harjoituslomake</span>
+        <span>Sivu 7 / 8</span>
+    </div>
+</section>
+
+
+<!-- SIVU 8 -->
+<section class="page">
+
+    <header class="header">
+        <div class="header-top">
+            <div class="brand">
+                <div class="brand-symbol">HY</div>
+                <div>
+                    <div class="brand-name">Keski-Suomen hyvinvointialue</div>
+                    <div class="brand-unit">Opiskeluterveydenhuolto</div>
+                </div>
+            </div>
+            <div class="document-info"><strong>Muuramen lukio</strong><br>27.09.2026</div>
+        </div>
+    </header>
+
+    <h2>8. Tarkista vastaukset</h2>
+
+    <div class="instruction">
+        Tarkista antamasi vastaukset ennen lomakkeen päättämistä.
+        Voit palata aikaisemmille sivuille Edellinen-painikkeella.
+    </div>
+
+    <div id="summary" class="summary"></div>
+
+    <h3>Lomakkeen täyttäjän vahvistus</h3>
+
+    <div class="section-box">
+        <label style="display:flex; gap:10px; font-size:13px; line-height:1.5;">
+            <input type="checkbox" name="Vahvistus" value="Vahvistettu">
+            <span>Olen tarkistanut lomakkeelle antamani tiedot.</span>
+        </label>
+    </div>
+
+    <button type="button" class="print-button" onclick="window.print()">
+        Tulosta / tallenna PDF
+    </button>
+
+    <p class="privacy-note">
+        Tämä on harjoitus- ja roolipelilomake. Lomakkeen tietoja ei lähetetä
+        Keski-Suomen hyvinvointialueelle, Muuramen lukiolle tai muulle
+        terveydenhuollon toimijalle. Älä käytä lomakkeella oikeita
+        henkilötietoja tai oikeita terveystietoja.
     </p>
 
-    <button>Aloita terveyskysely</button>
+    <div class="footer">
+        <span>Keski-Suomen hyvinvointialue • harjoituslomake</span>
+        <span>Sivu 8 / 8</span>
+    </div>
+</section>
+
+</form>
+</main>
+
+
+<div class="navigation">
+    <button id="prevBtn" class="secondary" onclick="changePage(-1)">← Edellinen</button>
+
+    <div class="progress-wrapper">
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">Sivu 1 / 8</div>
+    </div>
+
+    <button id="nextBtn" onclick="changePage(1)">Seuraava →</button>
+</div>
+
+
+<script>
+    let currentPage = 0;
+
+    const pages = document.querySelectorAll(".page");
+    const totalPages = pages.length;
+
+    function showPage(index) {
+        pages.forEach((page, i) => {
+            page.classList.toggle("active", i === index);
+        });
+
+        document.getElementById("prevBtn").disabled = index === 0;
+
+        const nextBtn = document.getElementById("nextBtn");
+
+        if (index === totalPages - 1) {
+            nextBtn.style.visibility = "hidden";
+            createSummary();
+        } else {
+            nextBtn.style.visibility = "visible";
+        }
+
+        const pageText = `Sivu ${index + 1} / ${totalPages}`;
+
+        document.getElementById("topPage").textContent = pageText;
+        document.getElementById("progressText").textContent = pageText;
+
+        const progress = ((index + 1) / totalPages) * 100;
+        document.getElementById("progressBar").style.width = progress + "%";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function changePage(direction) {
+        saveForm();
+
+        const newPage = currentPage + direction;
+
+        if (newPage >= 0 && newPage < totalPages) {
+            currentPage = newPage;
+            showPage(currentPage);
+        }
+    }
+
+    function saveForm() {
+        const form = document.getElementById("healthForm");
+        const data = {};
+
+        form.querySelectorAll("input, textarea, select").forEach(field => {
+
+            if (!field.name) return;
+
+            if (field.type === "radio") {
+                if (field.checked) {
+                    data[field.name] = field.value;
+                }
+            }
+
+            else if (field.type === "checkbox") {
+                data[field.name] = field.checked;
+            }
+
+            else {
+                data[field.name] = field.value;
+            }
+        });
+
+        localStorage.setItem("terveyskyselyDemo", JSON.stringify(data));
+    }
+
+    function loadForm() {
+        const stored = localStorage.getItem("terveyskyselyDemo");
+
+        if (!stored) return;
+
+        const data = JSON.parse(stored);
+
+        const form = document.getElementById("healthForm");
+
+        form.querySelectorAll("input, textarea, select").forEach(field => {
+
+            if (!field.name || data[field.name] === undefined) return;
+
+            if (field.type === "radio") {
+                field.checked = field.value === data[field.name];
+            }
+
+            else if (field.type === "checkbox") {
+                field.checked = data[field.name] === true;
+            }
+
+            else {
+                field.value = data[field.name];
+            }
+        });
+    }
+
+    function createSummary() {
+        saveForm();
+
+        const form = document.getElementById("healthForm");
+        const formData = new FormData(form);
+        const summary = document.getElementById("summary");
+
+        summary.innerHTML = "";
+
+        const entries = {};
+
+        for (const [key, value] of formData.entries()) {
+            if (value && key !== "Vahvistus") {
+                entries[key] = value;
+            }
+        }
+
+        Object.entries(entries).forEach(([key, value]) => {
+
+            const row = document.createElement("div");
+            row.className = "summary-row";
+
+            const title = document.createElement("strong");
+            title.textContent = key;
+
+            const answer = document.createElement("span");
+            answer.textContent = value;
+
+            row.appendChild(title);
+            row.appendChild(answer);
+
+            summary.appendChild(row);
+        });
+
+        if (Object.keys(entries).length === 0) {
+            summary.innerHTML = "<p>Vastauksia ei ole vielä annettu.</p>";
+        }
+    }
+
+    document.getElementById("healthForm").addEventListener("input", saveForm);
+    document.getElementById("healthForm").addEventListener("change", saveForm);
+
+    loadForm();
+    showPage(currentPage);
+</script>
+
 </body>
 </html>
