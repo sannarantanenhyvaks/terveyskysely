@@ -3,76 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terveyskysely | Opiskeluterveydenhuolto</title>
+<title>Toisen asteen opiskelijoiden terveyskysely</title>
 
 <style>
 :root{
-    --blue:#164f8b;
-    --blue-dark:#123f70;
-    --blue-soft:#edf4f9;
-    --green:#acd27d;
-    --pink:#fac4c5;
-    --ink:#17242d;
-    --muted:#5d6971;
-    --line:#c9d1d6;
-    --line-dark:#9eabb2;
-    --bg:#e9edef;
+    --blue:#174f86;
+    --blue-dark:#103e6b;
+    --blue-light:#eef5f9;
+    --green:#b8d68a;
+    --pink:#f5c4c7;
+    --text:#17242c;
+    --muted:#65727a;
+    --border:#c6d0d5;
+    --border-dark:#9eacb3;
+    --background:#e9edef;
+    --white:#ffffff;
 }
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
     margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:Arial, Helvetica, sans-serif;
+    background:var(--background);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
     font-size:14px;
     line-height:1.45;
 }
 
 /* =========================================================
-   YLÄPUOLINEN TYÖKALURIVI
-   ========================================================= */
+   YLÄPALKKI
+========================================================= */
 
-.viewer-bar{
+.viewer{
     width:210mm;
     max-width:calc(100% - 24px);
-    margin:22px auto 10px;
+    margin:20px auto 9px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    color:#47545c;
-    font-size:12px;
+    font-size:11px;
+    color:#58666e;
 }
 
-.viewer-title{
-    font-weight:700;
+.viewer strong{
+    color:#34434b;
 }
 
 /* =========================================================
    A4
-   ========================================================= */
+========================================================= */
 
-.document{
+.paper{
     width:210mm;
     min-height:297mm;
-    margin:0 auto 22px;
+    margin:0 auto 18px;
     background:#fff;
-    box-shadow:0 4px 20px rgba(0,0,0,.16);
-    position:relative;
+    box-shadow:0 5px 22px rgba(0,0,0,.15);
 }
 
 .page{
     display:none;
     position:relative;
     min-height:297mm;
-    padding:16mm 18mm 20mm;
+    padding:15mm 17mm 21mm;
 }
 
 .page.active{
@@ -80,186 +76,171 @@ body{
 }
 
 /* =========================================================
-   ASIAKIRJAN YLÄTUNNISTE
-   ========================================================= */
+   HEADER
+========================================================= */
 
-.document-header{
-    margin-bottom:25px;
+.header{
+    margin-bottom:23px;
 }
 
-.header-main{
+.header-top{
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
-    gap:35px;
+    gap:25px;
 }
 
-.logo-wrap{
-    flex:0 0 auto;
-}
-
-.hyvaks-logo{
-    display:block;
-    width:74mm;
+.logo{
+    width:72mm;
     max-width:100%;
     height:auto;
-}
-
-.header-information{
-    text-align:right;
-    font-size:11px;
-    line-height:1.55;
-    color:#4f5c64;
-    padding-top:3px;
-}
-
-.header-information strong{
     display:block;
-    color:var(--ink);
-    font-size:12px;
-    margin-bottom:2px;
 }
 
-.header-rule{
+.meta{
+    text-align:right;
+    font-size:10.5px;
+    line-height:1.55;
+    color:#617078;
+}
+
+.meta strong{
+    display:block;
+    font-size:12px;
+    color:#26343c;
+}
+
+.header-line{
     height:3px;
     background:var(--blue);
-    margin-top:17px;
+    margin-top:15px;
 }
 
-/* =========================================================
-   OTSIKOT
-   ========================================================= */
-
-.document-name{
-    margin:27px 0 5px;
-    font-size:25px;
-    line-height:1.18;
+.document-title{
+    margin:24px 0 4px;
+    font-size:24px;
+    line-height:1.2;
     color:var(--blue-dark);
-    font-weight:700;
-    letter-spacing:-.2px;
 }
 
 .document-subtitle{
     margin:0;
     color:var(--muted);
-    font-size:13px;
+    font-size:12px;
 }
 
+/* =========================================================
+   OTSIKOT
+========================================================= */
+
 .section-title{
-    margin:0 0 20px;
-    padding:0 0 8px;
-    border-bottom:1px solid var(--line-dark);
+    margin:0 0 19px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--border-dark);
     color:var(--blue-dark);
     font-size:18px;
-    font-weight:700;
 }
 
 .subheading{
+    margin:22px 0 11px;
     color:var(--blue-dark);
-    font-size:14px;
-    margin:24px 0 12px;
+    font-size:13px;
 }
 
 /* =========================================================
-   INFOALUE
-   ========================================================= */
+   INFO
+========================================================= */
 
-.info-box{
-    margin:0 0 24px;
-    padding:13px 15px;
-    background:var(--blue-soft);
+.info{
+    margin-bottom:21px;
+    padding:12px 14px;
     border-left:4px solid var(--blue);
-    font-size:12.5px;
+    background:var(--blue-light);
+    font-size:12px;
     line-height:1.55;
 }
 
-.info-box p{
-    margin:0 0 6px;
-}
-
-.info-box p:last-child{
-    margin-bottom:0;
-}
-
 /* =========================================================
-   LOMAKE
-   ========================================================= */
-
-.form-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
-}
-
-.form-row.three{
-    grid-template-columns:1fr 1fr 1fr;
-}
+   KYSYMYKSET
+========================================================= */
 
 .question{
-    margin:0 0 18px;
+    margin-bottom:17px;
 }
 
 .question-label{
     display:block;
-    margin-bottom:6px;
+    margin-bottom:7px;
     font-size:12.5px;
     font-weight:700;
-    color:#26343c;
 }
 
-.qnumber{
+.number{
     display:inline-block;
-    min-width:29px;
+    min-width:34px;
     color:var(--blue);
 }
 
 .help{
     display:block;
-    margin-top:3px;
-    color:#6b777e;
-    font-size:11px;
+    margin:3px 0 0 34px;
+    color:#6c787f;
+    font-size:10.5px;
     font-weight:400;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="number"],
-input[type="tel"],
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:17px;
+}
+
+.row.three{
+    grid-template-columns:1fr 1fr 1fr;
+}
+
+input[type=text],
+input[type=date],
+input[type=tel],
+input[type=number],
 textarea,
 select{
-    display:block;
     width:100%;
     padding:9px 10px;
-    border:1px solid var(--line-dark);
+    border:1px solid var(--border-dark);
     border-radius:2px;
     background:#fff;
-    color:var(--ink);
+    color:var(--text);
     font:inherit;
-    font-size:13px;
+    font-size:12.5px;
 }
 
 textarea{
-    min-height:68px;
+    min-height:67px;
     resize:vertical;
 }
 
-textarea.large{
-    min-height:105px;
+textarea.medium{
+    min-height:90px;
 }
 
 input:focus,
 textarea:focus,
 select:focus{
-    outline:2px solid rgba(22,79,139,.16);
+    outline:2px solid rgba(23,79,134,.13);
     border-color:var(--blue);
 }
 
+/* =========================================================
+   TAVALLISET MONIVALINNAT
+========================================================= */
+
 .options{
     display:flex;
-    align-items:center;
     flex-wrap:wrap;
-    gap:8px 21px;
-    min-height:32px;
+    align-items:center;
+    gap:8px 20px;
+    min-height:30px;
 }
 
 .option{
@@ -268,79 +249,145 @@ select:focus{
     gap:7px;
     cursor:pointer;
     font-size:12.5px;
-    font-weight:400;
 }
 
-input[type="radio"],
-input[type="checkbox"]{
+input[type=radio],
+input[type=checkbox]{
     width:16px;
     height:16px;
     margin:0;
     accent-color:var(--blue);
-}
-
-.question-block{
-    border:1px solid var(--line);
-    padding:14px 15px;
-    margin-bottom:14px;
-}
-
-.question-block .question:last-child{
-    margin-bottom:0;
-}
-
-.compact-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-bottom:20px;
-    font-size:12px;
-}
-
-.compact-table th,
-.compact-table td{
-    border:1px solid var(--line);
-    padding:8px;
-    vertical-align:middle;
-}
-
-.compact-table th{
-    background:#f2f5f6;
-    text-align:left;
-    font-weight:700;
-}
-
-.compact-table th:not(:first-child),
-.compact-table td:not(:first-child){
-    text-align:center;
-    width:75px;
+    cursor:pointer;
 }
 
 /* =========================================================
-   ALATUNNISTE
-   ========================================================= */
+   ARVIOINTITAULUKOT
+========================================================= */
 
-.document-footer{
-    position:absolute;
-    left:18mm;
-    right:18mm;
-    bottom:10mm;
-    display:grid;
-    grid-template-columns:1fr auto;
-    gap:20px;
-    padding-top:7px;
-    border-top:1px solid var(--line);
-    color:#66737a;
-    font-size:9.5px;
+.matrix{
+    width:100%;
+    border-collapse:collapse;
+    margin:6px 0 20px;
+    table-layout:fixed;
+    font-size:11.5px;
 }
 
-.page-number{
+.matrix th,
+.matrix td{
+    border:1px solid var(--border);
+    padding:9px 7px;
+    vertical-align:middle;
+}
+
+.matrix thead th{
+    background:#f0f4f6;
+    color:#17242c;
     font-weight:700;
+}
+
+.matrix th:first-child,
+.matrix td:first-child{
+    width:auto;
+    text-align:left;
+}
+
+.matrix th:not(:first-child),
+.matrix td:not(:first-child){
+    width:75px;
+    text-align:center;
+}
+
+.matrix tbody tr:hover{
+    background:#fafcfd;
+}
+
+.matrix input[type=radio]{
+    appearance:none;
+    -webkit-appearance:none;
+    width:16px;
+    height:16px;
+    border:1.5px solid #7e8b91;
+    border-radius:50%;
+    background:white;
+    display:inline-block;
+    position:relative;
+}
+
+.matrix input[type=radio]:checked{
+    border-color:var(--blue);
+}
+
+.matrix input[type=radio]:checked::after{
+    content:"";
+    position:absolute;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--blue);
+    top:2.5px;
+    left:2.5px;
+}
+
+/* =========================================================
+   CHECKBOX-RUUDUKKO
+========================================================= */
+
+.check-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px 18px;
+    padding:13px;
+    border:1px solid var(--border);
+}
+
+.check-grid label{
+    display:flex;
+    align-items:flex-start;
+    gap:7px;
+    font-size:12px;
+}
+
+/* =========================================================
+   EHDOLLISET KYSYMYKSET
+========================================================= */
+
+.followup{
+    display:none;
+    margin:-5px 0 18px 34px;
+    padding:12px 13px;
+    background:#f7f9fa;
+    border-left:3px solid #b3c4cd;
+}
+
+.followup.visible{
+    display:block;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+    position:absolute;
+    left:17mm;
+    right:17mm;
+    bottom:9mm;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding-top:6px;
+    border-top:1px solid var(--border);
+    color:#68757c;
+    font-size:9px;
+}
+
+.footer strong{
     color:#48565e;
 }
 
 /* =========================================================
    NAVIGAATIO
-   ========================================================= */
+========================================================= */
 
 .navigation{
     width:210mm;
@@ -348,20 +395,21 @@ input[type="checkbox"]{
     margin:0 auto 40px;
     display:grid;
     grid-template-columns:140px 1fr 140px;
-    align-items:center;
     gap:20px;
+    align-items:center;
 }
 
 .nav-button,
 .action-button{
     min-height:42px;
-    padding:10px 17px;
+    padding:10px 15px;
     border:0;
     border-radius:3px;
     background:var(--blue);
     color:white;
+    font-family:inherit;
+    font-size:12px;
     font-weight:700;
-    font-size:13px;
     cursor:pointer;
 }
 
@@ -370,125 +418,106 @@ input[type="checkbox"]{
     background:var(--blue-dark);
 }
 
-.nav-button.secondary{
-    background:#5f6d75;
-}
-
-.nav-button.secondary:hover{
-    background:#46535a;
+.nav-button.secondary,
+.action-button.secondary{
+    background:#5e6c74;
 }
 
 .nav-button:disabled{
-    opacity:.45;
+    opacity:.4;
     cursor:not-allowed;
-}
-
-.progress-area{
-    width:100%;
 }
 
 .progress-track{
     height:5px;
-    width:100%;
     overflow:hidden;
-    background:#cbd3d7;
-    border-radius:5px;
+    border-radius:10px;
+    background:#c9d2d6;
 }
 
 .progress-value{
+    width:7.14%;
     height:100%;
-    width:10%;
     background:var(--blue);
     transition:width .2s ease;
 }
 
-.progress-label{
-    text-align:center;
+.progress-text{
     margin-top:6px;
-    color:#66737a;
-    font-size:10.5px;
+    text-align:center;
+    color:#647178;
+    font-size:10px;
 }
 
 /* =========================================================
    YHTEENVETO
-   ========================================================= */
+========================================================= */
 
 .summary-section{
-    margin-bottom:21px;
+    margin-bottom:18px;
 }
 
 .summary-section h3{
     margin:0;
-    padding:7px 10px;
-    background:#edf2f5;
-    border:1px solid var(--line);
+    padding:7px 9px;
+    border:1px solid var(--border);
+    background:#eef3f6;
     color:var(--blue-dark);
-    font-size:12.5px;
+    font-size:12px;
 }
 
 .summary-row{
     display:grid;
     grid-template-columns:42% 58%;
-    border-left:1px solid var(--line);
-    border-right:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    font-size:11px;
+    border-left:1px solid var(--border);
+    border-right:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    font-size:10.5px;
 }
 
 .summary-key,
 .summary-value{
-    padding:7px 9px;
+    padding:6px 8px;
 }
 
 .summary-key{
-    font-weight:700;
     background:#fafbfb;
-}
-
-.summary-value{
-    overflow-wrap:anywhere;
+    font-weight:700;
 }
 
 .confirmation{
-    margin-top:22px;
-    border:1px solid var(--line-dark);
-    padding:15px;
+    margin-top:20px;
+    padding:14px;
+    border:1px solid var(--border-dark);
 }
 
 .confirmation label{
     display:flex;
     align-items:flex-start;
-    gap:10px;
-    font-size:12.5px;
-    line-height:1.5;
+    gap:9px;
+    font-size:12px;
 }
 
 .actions{
     display:flex;
-    gap:10px;
     flex-wrap:wrap;
-    margin-top:18px;
-}
-
-.action-button.gray{
-    background:#5f6d75;
+    gap:10px;
+    margin-top:16px;
 }
 
 /* =========================================================
-   RESPONSIVE
-   ========================================================= */
+   MOBIILI
+========================================================= */
 
 @media(max-width:850px){
 
-    body{
-        background:#fff;
+    body{background:#fff}
+
+    .viewer{
+        padding:0 12px;
     }
 
-    .viewer-bar{
-        margin-top:12px;
-    }
-
-    .document{
+    .paper{
         width:100%;
         min-height:0;
         margin:0;
@@ -500,24 +529,14 @@ input[type="checkbox"]{
         padding:24px 20px 75px;
     }
 
-    .header-main{
-        gap:20px;
-    }
-
-    .hyvaks-logo{
+    .logo{
         width:210px;
     }
 
-    .form-row,
-    .form-row.three{
+    .row,
+    .row.three{
         grid-template-columns:1fr;
         gap:0;
-    }
-
-    .document-footer{
-        left:20px;
-        right:20px;
-        bottom:20px;
     }
 
     .navigation{
@@ -526,39 +545,39 @@ input[type="checkbox"]{
         gap:10px;
     }
 
-    .nav-button{
-        padding:9px;
-        font-size:11px;
-    }
-}
-
-@media(max-width:550px){
-
-    .header-main{
-        flex-direction:column;
-    }
-
-    .header-information{
-        text-align:left;
-    }
-
-    .document-name{
-        font-size:21px;
-    }
-
-    .options{
-        align-items:flex-start;
-        flex-direction:column;
-        gap:8px;
-    }
-
-    .compact-table{
+    .matrix{
         font-size:10px;
     }
 
-    .compact-table th,
-    .compact-table td{
-        padding:5px 3px;
+    .matrix th:not(:first-child),
+    .matrix td:not(:first-child){
+        width:54px;
+        padding:7px 3px;
+    }
+
+    .footer{
+        left:20px;
+        right:20px;
+        bottom:18px;
+    }
+}
+
+@media(max-width:560px){
+
+    .header-top{
+        flex-direction:column;
+    }
+
+    .meta{
+        text-align:left;
+    }
+
+    .check-grid{
+        grid-template-columns:1fr;
+    }
+
+    .document-title{
+        font-size:21px;
     }
 
     .summary-row{
@@ -566,17 +585,17 @@ input[type="checkbox"]{
     }
 
     .summary-key{
-        padding-bottom:3px;
+        padding-bottom:2px;
     }
 
     .summary-value{
-        padding-top:3px;
+        padding-top:2px;
     }
 }
 
 /* =========================================================
    TULOSTUS
-   ========================================================= */
+========================================================= */
 
 @media print{
 
@@ -589,26 +608,24 @@ input[type="checkbox"]{
         background:white;
     }
 
-    .viewer-bar,
+    .viewer,
     .navigation,
     .actions{
-        display:none !important;
+        display:none!important;
     }
 
-    .document{
+    .paper{
         width:210mm;
-        box-shadow:none;
         margin:0;
+        box-shadow:none;
     }
 
     .page{
-        display:none !important;
-        width:210mm;
-        min-height:297mm;
+        display:none!important;
     }
 
     .page.active{
-        display:block !important;
+        display:block!important;
     }
 }
 </style>
@@ -616,38 +633,35 @@ input[type="checkbox"]{
 
 <body>
 
-<div class="viewer-bar">
-    <span class="viewer-title">Toisen asteen opiskelijoiden terveyskysely</span>
-    <span id="viewerPage">Sivu 1 / 10</span>
+<div class="viewer">
+    <strong>Toisen asteen opiskelijoiden terveyskysely</strong>
+    <span id="viewerPage">Sivu 1 / 14</span>
 </div>
 
-<main class="document">
+<main class="paper">
+
 <form id="healthForm">
 
-<!-- ======================================================
-     SIVU 1
-     ====================================================== -->
+<!-- =========================================================
+     1 / 14
+========================================================= -->
 
-<section class="page active" data-section="Perustiedot">
+<section class="page active" data-title="Perustiedot">
 
-<header class="document-header">
-    <div class="header-main">
-        <div class="logo-wrap">
-            <img src="hyvaks-logo.png"
-                 class="hyvaks-logo"
-                 alt="Keski-Suomen hyvinvointialue">
-        </div>
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
 
-        <div class="header-information">
+        <div class="meta">
             <strong>Muuramen lukio</strong>
             Opiskeluterveydenhuolto<br>
             27.09.2026
         </div>
     </div>
 
-    <div class="header-rule"></div>
+    <div class="header-line"></div>
 
-    <h1 class="document-name">
+    <h1 class="document-title">
         Toisen asteen opiskelijoiden terveyskysely
     </h1>
 
@@ -658,59 +672,56 @@ input[type="checkbox"]{
 
 <h2 class="section-title">1. Opiskelijan perustiedot</h2>
 
-<div class="info-box">
-    <p>
-        Täytä kysely ennen opiskeluterveydenhuollon terveystarkastusta.
-        Vastaa kysymyksiin oman tämänhetkisen tilanteesi perusteella.
-    </p>
-    <p>
-        Voit täydentää ja muuttaa vastauksiasi ennen lomakkeen päättämistä.
-    </p>
+<div class="info">
+    Täytä kysely oman tämänhetkisen tilanteesi perusteella.
+    Kyselyn tarkoituksena on kartoittaa terveyttäsi, hyvinvointiasi,
+    opiskelukykyäsi sekä mahdollisia asioita, joista haluat keskustella
+    terveystarkastuksessa.
 </div>
 
-<div class="form-row">
+<div class="row">
     <div class="question">
         <label class="question-label">
-            <span class="qnumber">1.1</span>Etu- ja sukunimi
+            <span class="number">1.1</span>Etu- ja sukunimi
         </label>
         <input type="text" name="Etu- ja sukunimi">
     </div>
 
     <div class="question">
         <label class="question-label">
-            <span class="qnumber">1.2</span>Syntymäaika
+            <span class="number">1.2</span>Syntymäaika
         </label>
         <input type="date" name="Syntymäaika">
     </div>
 </div>
 
-<div class="form-row">
+<div class="row">
     <div class="question">
         <label class="question-label">
-            <span class="qnumber">1.3</span>Oppilaitos
+            <span class="number">1.3</span>Oppilaitos
         </label>
         <input type="text" name="Oppilaitos" value="Muuramen lukio">
     </div>
 
     <div class="question">
         <label class="question-label">
-            <span class="qnumber">1.4</span>Ryhmä / vuosikurssi
+            <span class="number">1.4</span>Ryhmä / vuosikurssi
         </label>
         <input type="text" name="Ryhmä / vuosikurssi">
     </div>
 </div>
 
-<div class="form-row">
+<div class="row">
     <div class="question">
         <label class="question-label">
-            <span class="qnumber">1.5</span>Puhelinnumero
+            <span class="number">1.5</span>Puhelinnumero
         </label>
         <input type="tel" name="Puhelinnumero">
     </div>
 
     <div class="question">
         <label class="question-label">
-            <span class="qnumber">1.6</span>Sähköposti
+            <span class="number">1.6</span>Sähköposti
         </label>
         <input type="text" name="Sähköposti">
     </div>
@@ -718,744 +729,1266 @@ input[type="checkbox"]{
 
 <div class="question">
     <label class="question-label">
-        <span class="qnumber">1.7</span>Miten arvioit terveydentilasi tällä hetkellä?
+        <span class="number">1.7</span>Miten arvioit terveydentilasi tällä hetkellä?
     </label>
 
     <div class="options">
-        <label class="option"><input type="radio" name="Terveydentila" value="Erittäin hyvä">Erittäin hyvä</label>
-        <label class="option"><input type="radio" name="Terveydentila" value="Hyvä">Hyvä</label>
-        <label class="option"><input type="radio" name="Terveydentila" value="Kohtalainen">Kohtalainen</label>
-        <label class="option"><input type="radio" name="Terveydentila" value="Huono">Huono</label>
+        <label class="option"><input type="radio" name="Terveydentilan arvio" value="Erittäin hyvä"> Erittäin hyvä</label>
+        <label class="option"><input type="radio" name="Terveydentilan arvio" value="Hyvä"> Hyvä</label>
+        <label class="option"><input type="radio" name="Terveydentilan arvio" value="Kohtalainen"> Kohtalainen</label>
+        <label class="option"><input type="radio" name="Terveydentilan arvio" value="Huono"> Huono</label>
     </div>
 </div>
 
 <div class="question">
     <label class="question-label">
-        <span class="qnumber">1.8</span>Onko sinulla tällä hetkellä terveyteesi liittyviä huolia?
+        <span class="number">1.8</span>Onko sinulla tällä hetkellä omaan terveyteesi liittyviä huolia?
     </label>
 
     <div class="options">
-        <label class="option"><input type="radio" name="Terveyteen liittyviä huolia" value="Kyllä">Kyllä</label>
-        <label class="option"><input type="radio" name="Terveyteen liittyviä huolia" value="Ei">Ei</label>
-        <label class="option"><input type="radio" name="Terveyteen liittyviä huolia" value="En osaa sanoa">En osaa sanoa</label>
+        <label class="option"><input type="radio" name="Terveyshuolia" value="Ei"> Ei</label>
+        <label class="option"><input type="radio" name="Terveyshuolia" value="Jonkin verran"> Jonkin verran</label>
+        <label class="option"><input type="radio" name="Terveyshuolia" value="Kyllä"> Kyllä</label>
+        <label class="option"><input type="radio" name="Terveyshuolia" value="En osaa sanoa"> En osaa sanoa</label>
     </div>
 </div>
 
 <div class="question">
     <label class="question-label">
-        <span class="qnumber">1.9</span>Jos vastasit kyllä, kerro halutessasi tarkemmin.
+        <span class="number">1.9</span>Jos haluat, voit kertoa terveydentilaasi liittyvistä huolista tarkemmin.
     </label>
-    <textarea name="Terveyshuolen tarkennus"></textarea>
+    <textarea name="Terveyshuolten tarkennus"></textarea>
 </div>
 
-<footer class="document-footer">
-    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto | Muuramen lukio</span>
-    <span class="page-number">Sivu 1 / 10</span>
-</footer>
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 1 / 14</strong>
+</div>
 
 </section>
 
+<!-- =========================================================
+     2 / 14
+========================================================= -->
 
-<!-- ======================================================
-     SIVU 2
-     ====================================================== -->
+<section class="page" data-title="Sairaudet ja terveydentila">
 
-<section class="page" data-section="Terveys ja sairaudet">
-
-<header class="document-header">
-    <div class="header-main">
-        <img src="hyvaks-logo.png" class="hyvaks-logo" alt="Keski-Suomen hyvinvointialue">
-        <div class="header-information">
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
+        <div class="meta">
             <strong>Muuramen lukio</strong>
             Opiskeluterveydenhuolto<br>27.09.2026
         </div>
     </div>
-    <div class="header-rule"></div>
+    <div class="header-line"></div>
 </header>
 
-<h2 class="section-title">2. Terveys ja sairaudet</h2>
+<h2 class="section-title">2. Sairaudet ja terveydentila</h2>
 
 <div class="question">
     <label class="question-label">
-        <span class="qnumber">2.1</span>Onko sinulla lääkärin tai muun terveydenhuollon ammattilaisen toteamia pitkäaikaissairauksia?
+        <span class="number">2.1</span>Onko sinulla lääkärin toteama pitkäaikaissairaus?
     </label>
+
     <div class="options">
-        <label class="option"><input type="radio" name="Pitkäaikaissairaudet" value="Kyllä">Kyllä</label>
-        <label class="option"><input type="radio" name="Pitkäaikaissairaudet" value="Ei">Ei</label>
-        <label class="option"><input type="radio" name="Pitkäaikaissairaudet" value="En tiedä">En tiedä</label>
+        <label class="option"><input type="radio" name="Pitkäaikaissairaus" value="Ei" data-follow="diseaseFollow"> Ei</label>
+        <label class="option"><input type="radio" name="Pitkäaikaissairaus" value="Kyllä" data-follow="diseaseFollow"> Kyllä</label>
+        <label class="option"><input type="radio" name="Pitkäaikaissairaus" value="En osaa sanoa" data-follow="diseaseFollow"> En osaa sanoa</label>
+    </div>
+</div>
+
+<div class="followup" id="diseaseFollow">
+    <label class="question-label">Mikä tai mitkä sairaudet?</label>
+    <textarea name="Pitkäaikaissairauksien tarkennus"></textarea>
+</div>
+
+<table class="matrix">
+<thead>
+<tr>
+    <th>2.2 Onko sinulla ollut viimeisen 6 kuukauden aikana seuraavia oireita?</th>
+    <th>Ei</th>
+    <th>Harvoin</th>
+    <th>Joskus</th>
+    <th>Usein</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+    <td>Päänsärkyä</td>
+    <td><input type="radio" name="Päänsärky" value="Ei"></td>
+    <td><input type="radio" name="Päänsärky" value="Harvoin"></td>
+    <td><input type="radio" name="Päänsärky" value="Joskus"></td>
+    <td><input type="radio" name="Päänsärky" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Huimausta tai pyörryttävää oloa</td>
+    <td><input type="radio" name="Huimaus" value="Ei"></td>
+    <td><input type="radio" name="Huimaus" value="Harvoin"></td>
+    <td><input type="radio" name="Huimaus" value="Joskus"></td>
+    <td><input type="radio" name="Huimaus" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Vatsakipua tai vatsavaivoja</td>
+    <td><input type="radio" name="Vatsavaivat" value="Ei"></td>
+    <td><input type="radio" name="Vatsavaivat" value="Harvoin"></td>
+    <td><input type="radio" name="Vatsavaivat" value="Joskus"></td>
+    <td><input type="radio" name="Vatsavaivat" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Hengenahdistusta</td>
+    <td><input type="radio" name="Hengenahdistus" value="Ei"></td>
+    <td><input type="radio" name="Hengenahdistus" value="Harvoin"></td>
+    <td><input type="radio" name="Hengenahdistus" value="Joskus"></td>
+    <td><input type="radio" name="Hengenahdistus" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Sydämen tykytystä</td>
+    <td><input type="radio" name="Sydämen tykytys" value="Ei"></td>
+    <td><input type="radio" name="Sydämen tykytys" value="Harvoin"></td>
+    <td><input type="radio" name="Sydämen tykytys" value="Joskus"></td>
+    <td><input type="radio" name="Sydämen tykytys" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Selkä-, niska- tai hartiakipua</td>
+    <td><input type="radio" name="Tuki- ja liikuntaelinkipu" value="Ei"></td>
+    <td><input type="radio" name="Tuki- ja liikuntaelinkipu" value="Harvoin"></td>
+    <td><input type="radio" name="Tuki- ja liikuntaelinkipu" value="Joskus"></td>
+    <td><input type="radio" name="Tuki- ja liikuntaelinkipu" value="Usein"></td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="question">
+    <label class="question-label">
+        <span class="number">2.3</span>Onko jokin oire haitannut opiskelua, nukkumista, liikuntaa tai muuta arkeasi?
+    </label>
+
+    <div class="options">
+        <label class="option"><input type="radio" name="Oireiden haitta" value="Ei"> Ei</label>
+        <label class="option"><input type="radio" name="Oireiden haitta" value="Joskus"> Joskus</label>
+        <label class="option"><input type="radio" name="Oireiden haitta" value="Kyllä"> Kyllä</label>
     </div>
 </div>
 
 <div class="question">
     <label class="question-label">
-        <span class="qnumber">2.2</span>Jos kyllä, mitä sairauksia?
+        <span class="number">2.4</span>Muut oireet tai terveydentilaan liittyvät lisätiedot
     </label>
-    <textarea name="Todetut sairaudet"></textarea>
+    <textarea name="Muut oireet"></textarea>
 </div>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">2.3</span>Onko sinulla ollut viimeisen vuoden aikana toistuvia tai pitkäkestoisia oireita?
-    </label>
-    <div class="options">
-        <label class="option"><input type="radio" name="Pitkäkestoiset oireet" value="Kyllä">Kyllä</label>
-        <label class="option"><input type="radio" name="Pitkäkestoiset oireet" value="Ei">Ei</label>
-        <label class="option"><input type="radio" name="Pitkäkestoiset oireet" value="Joskus">Joskus</label>
-    </div>
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 2 / 14</strong>
 </div>
-
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">2.4</span>Kuvaile oireita.
-    </label>
-    <textarea class="large" name="Oireiden kuvaus"></textarea>
-</div>
-
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">2.5</span>Onko sinulla ollut viimeisen vuoden aikana tapaturmia tai vammoja, joilla on edelleen vaikutusta terveyteesi?
-    </label>
-    <div class="options">
-        <label class="option"><input type="radio" name="Tapaturmat tai vammat" value="Kyllä">Kyllä</label>
-        <label class="option"><input type="radio" name="Tapaturmat tai vammat" value="Ei">Ei</label>
-    </div>
-</div>
-
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">2.6</span>Lisätiedot tapaturmista tai vammoista
-    </label>
-    <textarea name="Tapaturmien lisätiedot"></textarea>
-</div>
-
-<footer class="document-footer">
-    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto | Muuramen lukio</span>
-    <span class="page-number">Sivu 2 / 10</span>
-</footer>
 
 </section>
 
+<!-- =========================================================
+     3 / 14
+========================================================= -->
 
-<!-- ======================================================
-     SIVU 3
-     ====================================================== -->
+<section class="page" data-title="Lääkitys, allergiat ja rokotukset">
 
-<section class="page" data-section="Lääkitys ja allergiat">
-
-<header class="document-header">
-    <div class="header-main">
-        <img src="hyvaks-logo.png" class="hyvaks-logo" alt="Keski-Suomen hyvinvointialue">
-        <div class="header-information">
-            <strong>Muuramen lukio</strong>
-            Opiskeluterveydenhuolto<br>27.09.2026
-        </div>
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
+        <div class="meta"><strong>Muuramen lukio</strong>Opiskeluterveydenhuolto<br>27.09.2026</div>
     </div>
-    <div class="header-rule"></div>
+    <div class="header-line"></div>
 </header>
 
 <h2 class="section-title">3. Lääkitys, allergiat ja rokotukset</h2>
 
 <div class="question">
-    <label class="question-label">
-        <span class="qnumber">3.1</span>Onko sinulla säännöllisesti käytössä olevia lääkkeitä?
-    </label>
+    <label class="question-label"><span class="number">3.1</span>Onko sinulla säännöllinen lääkitys?</label>
     <div class="options">
-        <label class="option"><input type="radio" name="Säännöllinen lääkitys" value="Kyllä">Kyllä</label>
-        <label class="option"><input type="radio" name="Säännöllinen lääkitys" value="Ei">Ei</label>
+        <label class="option"><input type="radio" name="Säännöllinen lääkitys" value="Ei" data-follow="medFollow"> Ei</label>
+        <label class="option"><input type="radio" name="Säännöllinen lääkitys" value="Kyllä" data-follow="medFollow"> Kyllä</label>
+    </div>
+</div>
+
+<div class="followup" id="medFollow">
+    <label class="question-label">Lääkkeen nimi, annostus ja käyttötarkoitus</label>
+    <textarea name="Lääkityksen tarkennus"></textarea>
+</div>
+
+<div class="question">
+    <label class="question-label"><span class="number">3.2</span>Onko sinulla tarvittaessa käytettäviä lääkkeitä?</label>
+    <div class="options">
+        <label class="option"><input type="radio" name="Tarvittaessa käytettävät lääkkeet" value="Ei"> Ei</label>
+        <label class="option"><input type="radio" name="Tarvittaessa käytettävät lääkkeet" value="Kyllä"> Kyllä</label>
     </div>
 </div>
 
 <div class="question">
-    <label class="question-label">
-        <span class="qnumber">3.2</span>Lääkkeen nimi, annostus ja käyttötarkoitus
-    </label>
-    <textarea class="large" name="Lääkkeet ja annostus"></textarea>
-</div>
-
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">3.3</span>Onko sinulla lääke-, ruoka-aine- tai muita allergioita?
-    </label>
+    <label class="question-label"><span class="number">3.3</span>Onko sinulla allergioita?</label>
     <div class="options">
-        <label class="option"><input type="radio" name="Allergiat" value="Kyllä">Kyllä</label>
-        <label class="option"><input type="radio" name="Allergiat" value="Ei">Ei</label>
-        <label class="option"><input type="radio" name="Allergiat" value="En tiedä">En tiedä</label>
+        <label class="option"><input type="radio" name="Allergiat" value="Ei" data-follow="allergyFollow"> Ei</label>
+        <label class="option"><input type="radio" name="Allergiat" value="Kyllä" data-follow="allergyFollow"> Kyllä</label>
+        <label class="option"><input type="radio" name="Allergiat" value="En tiedä" data-follow="allergyFollow"> En tiedä</label>
     </div>
 </div>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">3.4</span>Allergiat ja niiden aiheuttamat oireet
-    </label>
+<div class="followup" id="allergyFollow">
+    <label class="question-label">Mitä allergioita ja millaisia oireita niistä aiheutuu?</label>
     <textarea name="Allergioiden tarkennus"></textarea>
 </div>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">3.5</span>Onko rokotussuojaasi liittyen jotain epäselvää?
-    </label>
-    <div class="options">
-        <label class="option"><input type="radio" name="Rokotussuojan epäselvyys" value="Kyllä">Kyllä</label>
-        <label class="option"><input type="radio" name="Rokotussuojan epäselvyys" value="Ei">Ei</label>
-        <label class="option"><input type="radio" name="Rokotussuojan epäselvyys" value="En tiedä">En tiedä</label>
-    </div>
-</div>
+<table class="matrix">
+<thead>
+<tr>
+    <th>3.4 Rokotuksiin liittyvät tiedot</th>
+    <th>Kyllä</th>
+    <th>Ei</th>
+    <th>En tiedä</th>
+</tr>
+</thead>
+<tbody>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">3.6</span>Rokotuksiin liittyvät lisätiedot tai kysymykset
-    </label>
-    <textarea name="Rokotusten lisätiedot"></textarea>
-</div>
+<tr>
+    <td>Oletko saanut rokotukset kansallisen rokotusohjelman mukaisesti?</td>
+    <td><input type="radio" name="Rokotusohjelma" value="Kyllä"></td>
+    <td><input type="radio" name="Rokotusohjelma" value="Ei"></td>
+    <td><input type="radio" name="Rokotusohjelma" value="En tiedä"></td>
+</tr>
 
-<footer class="document-footer">
-    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto | Muuramen lukio</span>
-    <span class="page-number">Sivu 3 / 10</span>
-</footer>
+<tr>
+    <td>Onko rokotustiedoissasi mielestäsi puutteita?</td>
+    <td><input type="radio" name="Rokotustietojen puutteet" value="Kyllä"></td>
+    <td><input type="radio" name="Rokotustietojen puutteet" value="Ei"></td>
+    <td><input type="radio" name="Rokotustietojen puutteet" value="En tiedä"></td>
+</tr>
+
+<tr>
+    <td>Haluatko keskustella rokotuksista terveystarkastuksessa?</td>
+    <td><input type="radio" name="Rokotuskeskustelu" value="Kyllä"></td>
+    <td><input type="radio" name="Rokotuskeskustelu" value="Ei"></td>
+    <td><input type="radio" name="Rokotuskeskustelu" value="En tiedä"></td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 3 / 14</strong>
+</div>
 
 </section>
 
+<!-- =========================================================
+     4 / 14
+========================================================= -->
 
-<!-- ======================================================
-     SIVU 4
-     ====================================================== -->
+<section class="page" data-title="Näkö, kuulo ja suun terveys">
 
-<section class="page" data-section="Uni ja palautuminen">
-
-<header class="document-header">
-    <div class="header-main">
-        <img src="hyvaks-logo.png" class="hyvaks-logo" alt="Keski-Suomen hyvinvointialue">
-        <div class="header-information">
-            <strong>Muuramen lukio</strong>
-            Opiskeluterveydenhuolto<br>27.09.2026
-        </div>
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
+        <div class="meta"><strong>Muuramen lukio</strong>Opiskeluterveydenhuolto<br>27.09.2026</div>
     </div>
-    <div class="header-rule"></div>
+    <div class="header-line"></div>
 </header>
 
-<h2 class="section-title">4. Uni ja palautuminen</h2>
+<h2 class="section-title">4. Näkö, kuulo ja suun terveys</h2>
 
-<div class="form-row">
-    <div class="question">
-        <label class="question-label">
-            <span class="qnumber">4.1</span>Kuinka monta tuntia nukut tavallisesti arkisin?
-        </label>
-        <input type="text" name="Unen määrä arkisin" placeholder="Esim. 8 tuntia">
-    </div>
+<table class="matrix">
+<thead>
+<tr>
+    <th>4.1 Näköön liittyvät asiat</th>
+    <th>Ei</th>
+    <th>Joskus</th>
+    <th>Usein</th>
+</tr>
+</thead>
+<tbody>
 
-    <div class="question">
-        <label class="question-label">
-            <span class="qnumber">4.2</span>Kuinka monta tuntia nukut tavallisesti viikonloppuisin?
-        </label>
-        <input type="text" name="Unen määrä viikonloppuisin" placeholder="Esim. 9 tuntia">
-    </div>
-</div>
+<tr>
+    <td>Minulla on vaikeuksia nähdä kauas tai taululle</td>
+    <td><input type="radio" name="Kaukonäön vaikeus" value="Ei"></td>
+    <td><input type="radio" name="Kaukonäön vaikeus" value="Joskus"></td>
+    <td><input type="radio" name="Kaukonäön vaikeus" value="Usein"></td>
+</tr>
 
-<table class="compact-table">
-    <thead>
-        <tr>
-            <th>4.3 Unen ja palautumisen arviointi</th>
-            <th>Ei</th>
-            <th>Joskus</th>
-            <th>Usein</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Minulla on vaikeuksia nukahtaa</td>
-            <td><input type="radio" name="Nukahtamisvaikeudet" value="Ei"></td>
-            <td><input type="radio" name="Nukahtamisvaikeudet" value="Joskus"></td>
-            <td><input type="radio" name="Nukahtamisvaikeudet" value="Usein"></td>
-        </tr>
-        <tr>
-            <td>Heräilen öisin</td>
-            <td><input type="radio" name="Yöllinen heräily" value="Ei"></td>
-            <td><input type="radio" name="Yöllinen heräily" value="Joskus"></td>
-            <td><input type="radio" name="Yöllinen heräily" value="Usein"></td>
-        </tr>
-        <tr>
-            <td>Olen päivisin väsynyt</td>
-            <td><input type="radio" name="Päiväväsymys" value="Ei"></td>
-            <td><input type="radio" name="Päiväväsymys" value="Joskus"></td>
-            <td><input type="radio" name="Päiväväsymys" value="Usein"></td>
-        </tr>
-    </tbody>
+<tr>
+    <td>Minulla on vaikeuksia nähdä lähelle tai lukea</td>
+    <td><input type="radio" name="Lähinäön vaikeus" value="Ei"></td>
+    <td><input type="radio" name="Lähinäön vaikeus" value="Joskus"></td>
+    <td><input type="radio" name="Lähinäön vaikeus" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Silmät väsyvät, kuivuvat tai oireilevat</td>
+    <td><input type="radio" name="Silmien oireilu" value="Ei"></td>
+    <td><input type="radio" name="Silmien oireilu" value="Joskus"></td>
+    <td><input type="radio" name="Silmien oireilu" value="Usein"></td>
+</tr>
+
+</tbody>
 </table>
 
 <div class="question">
-    <label class="question-label">
-        <span class="qnumber">4.4</span>Koetko saavasi riittävästi unta?
-    </label>
+    <label class="question-label"><span class="number">4.2</span>Käytätkö silmälaseja tai piilolinssejä?</label>
     <div class="options">
-        <label class="option"><input type="radio" name="Riittävä uni" value="Kyllä">Kyllä</label>
-        <label class="option"><input type="radio" name="Riittävä uni" value="Useimmiten">Useimmiten</label>
-        <label class="option"><input type="radio" name="Riittävä uni" value="Ei">Ei</label>
+        <label class="option"><input type="radio" name="Silmälasit" value="En"> En</label>
+        <label class="option"><input type="radio" name="Silmälasit" value="Silmälaseja"> Silmälaseja</label>
+        <label class="option"><input type="radio" name="Silmälasit" value="Piilolinssejä"> Piilolinssejä</label>
+        <label class="option"><input type="radio" name="Silmälasit" value="Molempia"> Molempia</label>
     </div>
 </div>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">4.5</span>Uneen tai palautumiseen liittyvät lisätiedot
-    </label>
-    <textarea class="large" name="Uneen liittyvät lisätiedot"></textarea>
-</div>
+<table class="matrix">
+<thead>
+<tr>
+    <th>4.3 Kuulo</th>
+    <th>Ei</th>
+    <th>Joskus</th>
+    <th>Usein</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td>Minulla on vaikeuksia kuulla puhetta</td>
+    <td><input type="radio" name="Kuulovaikeus" value="Ei"></td>
+    <td><input type="radio" name="Kuulovaikeus" value="Joskus"></td>
+    <td><input type="radio" name="Kuulovaikeus" value="Usein"></td>
+</tr>
+<tr>
+    <td>Korvissani esiintyy soimista tai muuta ääntä</td>
+    <td><input type="radio" name="Tinnitus" value="Ei"></td>
+    <td><input type="radio" name="Tinnitus" value="Joskus"></td>
+    <td><input type="radio" name="Tinnitus" value="Usein"></td>
+</tr>
+</tbody>
+</table>
 
-<footer class="document-footer">
-    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto | Muuramen lukio</span>
-    <span class="page-number">Sivu 4 / 10</span>
-</footer>
+<table class="matrix">
+<thead>
+<tr>
+    <th>4.4 Suun ja hampaiden terveys</th>
+    <th>Kyllä</th>
+    <th>Ei</th>
+    <th>Joskus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td>Harjaatko hampaasi vähintään kaksi kertaa päivässä?</td>
+    <td><input type="radio" name="Hampaiden harjaus" value="Kyllä"></td>
+    <td><input type="radio" name="Hampaiden harjaus" value="Ei"></td>
+    <td><input type="radio" name="Hampaiden harjaus" value="Joskus"></td>
+</tr>
+<tr>
+    <td>Onko sinulla hammassärkyä tai muuta suun alueen kipua?</td>
+    <td><input type="radio" name="Suun kipu" value="Kyllä"></td>
+    <td><input type="radio" name="Suun kipu" value="Ei"></td>
+    <td><input type="radio" name="Suun kipu" value="Joskus"></td>
+</tr>
+<tr>
+    <td>Vuotavatko ikenesi verta harjatessa?</td>
+    <td><input type="radio" name="Ikenien verenvuoto" value="Kyllä"></td>
+    <td><input type="radio" name="Ikenien verenvuoto" value="Ei"></td>
+    <td><input type="radio" name="Ikenien verenvuoto" value="Joskus"></td>
+</tr>
+</tbody>
+</table>
+
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 4 / 14</strong>
+</div>
 
 </section>
 
+<!-- =========================================================
+     5 / 14 UNI
+========================================================= -->
 
-<!-- ======================================================
-     SIVU 5
-     ====================================================== -->
+<section class="page" data-title="Uni ja palautuminen">
 
-<section class="page" data-section="Ravitsemus ja liikunta">
-
-<header class="document-header">
-    <div class="header-main">
-        <img src="hyvaks-logo.png" class="hyvaks-logo" alt="Keski-Suomen hyvinvointialue">
-        <div class="header-information">
-            <strong>Muuramen lukio</strong>
-            Opiskeluterveydenhuolto<br>27.09.2026
-        </div>
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
+        <div class="meta"><strong>Muuramen lukio</strong>Opiskeluterveydenhuolto<br>27.09.2026</div>
     </div>
-    <div class="header-rule"></div>
+    <div class="header-line"></div>
 </header>
 
-<h2 class="section-title">5. Ravitsemus ja liikunta</h2>
+<h2 class="section-title">5. Uni ja palautuminen</h2>
+
+<div class="row">
+    <div class="question">
+        <label class="question-label"><span class="number">5.1</span>Kuinka monta tuntia nukut tavallisesti arkisin?</label>
+        <input type="text" name="Uni arkisin" placeholder="Esim. 8 tuntia">
+    </div>
+
+    <div class="question">
+        <label class="question-label"><span class="number">5.2</span>Kuinka monta tuntia nukut tavallisesti viikonloppuisin?</label>
+        <input type="text" name="Uni viikonloppuisin" placeholder="Esim. 9 tuntia">
+    </div>
+</div>
+
+<table class="matrix">
+<thead>
+<tr>
+    <th>5.3 Unen ja palautumisen arviointi</th>
+    <th>Ei</th>
+    <th>Harvoin</th>
+    <th>Joskus</th>
+    <th>Usein</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+    <td>Minulla on vaikeuksia nukahtaa</td>
+    <td><input type="radio" name="Nukahtamisvaikeus" value="Ei"></td>
+    <td><input type="radio" name="Nukahtamisvaikeus" value="Harvoin"></td>
+    <td><input type="radio" name="Nukahtamisvaikeus" value="Joskus"></td>
+    <td><input type="radio" name="Nukahtamisvaikeus" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Heräilen öisin</td>
+    <td><input type="radio" name="Yöllinen heräily" value="Ei"></td>
+    <td><input type="radio" name="Yöllinen heräily" value="Harvoin"></td>
+    <td><input type="radio" name="Yöllinen heräily" value="Joskus"></td>
+    <td><input type="radio" name="Yöllinen heräily" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Herään liian aikaisin enkä saa enää unta</td>
+    <td><input type="radio" name="Liian aikainen herääminen" value="Ei"></td>
+    <td><input type="radio" name="Liian aikainen herääminen" value="Harvoin"></td>
+    <td><input type="radio" name="Liian aikainen herääminen" value="Joskus"></td>
+    <td><input type="radio" name="Liian aikainen herääminen" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Olen aamuisin väsynyt</td>
+    <td><input type="radio" name="Aamuväsymys" value="Ei"></td>
+    <td><input type="radio" name="Aamuväsymys" value="Harvoin"></td>
+    <td><input type="radio" name="Aamuväsymys" value="Joskus"></td>
+    <td><input type="radio" name="Aamuväsymys" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Olen päivisin väsynyt</td>
+    <td><input type="radio" name="Päiväväsymys" value="Ei"></td>
+    <td><input type="radio" name="Päiväväsymys" value="Harvoin"></td>
+    <td><input type="radio" name="Päiväväsymys" value="Joskus"></td>
+    <td><input type="radio" name="Päiväväsymys" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Koen palautuvani riittävästi arjen rasituksesta</td>
+    <td><input type="radio" name="Palautuminen" value="Ei"></td>
+    <td><input type="radio" name="Palautuminen" value="Harvoin"></td>
+    <td><input type="radio" name="Palautuminen" value="Joskus"></td>
+    <td><input type="radio" name="Palautuminen" value="Usein"></td>
+</tr>
+
+</tbody>
+</table>
 
 <div class="question">
-    <label class="question-label">
-        <span class="qnumber">5.1</span>Syötkö aamupalan koulupäivinä?
-    </label>
+    <label class="question-label"><span class="number">5.4</span>Koetko nukkuvasi riittävästi?</label>
     <div class="options">
-        <label class="option"><input type="radio" name="Aamupala" value="Päivittäin">Päivittäin</label>
-        <label class="option"><input type="radio" name="Aamupala" value="Useimpina päivinä">Useimpina päivinä</label>
-        <label class="option"><input type="radio" name="Aamupala" value="Harvoin">Harvoin</label>
-        <label class="option"><input type="radio" name="Aamupala" value="En koskaan">En koskaan</label>
+        <label class="option"><input type="radio" name="Riittävä uni" value="Kyllä"> Kyllä</label>
+        <label class="option"><input type="radio" name="Riittävä uni" value="Useimmiten"> Useimmiten</label>
+        <label class="option"><input type="radio" name="Riittävä uni" value="Joskus"> Joskus</label>
+        <label class="option"><input type="radio" name="Riittävä uni" value="En"> En</label>
     </div>
 </div>
 
 <div class="question">
-    <label class="question-label">
-        <span class="qnumber">5.2</span>Syötkö koululounaan?
-    </label>
+    <label class="question-label"><span class="number">5.5</span>Uneen tai palautumiseen liittyvät lisätiedot</label>
+    <textarea name="Unen lisätiedot"></textarea>
+</div>
+
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 5 / 14</strong>
+</div>
+
+</section>
+
+<!-- =========================================================
+     6 / 14 RAVITSEMUS
+========================================================= -->
+
+<section class="page" data-title="Ravitsemus">
+
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
+        <div class="meta"><strong>Muuramen lukio</strong>Opiskeluterveydenhuolto<br>27.09.2026</div>
+    </div>
+    <div class="header-line"></div>
+</header>
+
+<h2 class="section-title">6. Ravitsemus ja ruokailu</h2>
+
+<table class="matrix">
+<thead>
+<tr>
+    <th>6.1 Kuinka usein seuraavat toteutuvat koulupäivinä?</th>
+    <th>En koskaan</th>
+    <th>Harvoin</th>
+    <th>Usein</th>
+    <th>Päivittäin</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+    <td>Syön aamupalan</td>
+    <td><input type="radio" name="Aamupala" value="En koskaan"></td>
+    <td><input type="radio" name="Aamupala" value="Harvoin"></td>
+    <td><input type="radio" name="Aamupala" value="Usein"></td>
+    <td><input type="radio" name="Aamupala" value="Päivittäin"></td>
+</tr>
+
+<tr>
+    <td>Syön koululounaan</td>
+    <td><input type="radio" name="Koululounas" value="En koskaan"></td>
+    <td><input type="radio" name="Koululounas" value="Harvoin"></td>
+    <td><input type="radio" name="Koululounas" value="Usein"></td>
+    <td><input type="radio" name="Koululounas" value="Päivittäin"></td>
+</tr>
+
+<tr>
+    <td>Syön lämpimän aterian koulupäivän jälkeen</td>
+    <td><input type="radio" name="Lämmin ateria" value="En koskaan"></td>
+    <td><input type="radio" name="Lämmin ateria" value="Harvoin"></td>
+    <td><input type="radio" name="Lämmin ateria" value="Usein"></td>
+    <td><input type="radio" name="Lämmin ateria" value="Päivittäin"></td>
+</tr>
+
+<tr>
+    <td>Ruokailuni on säännöllistä</td>
+    <td><input type="radio" name="Säännöllinen ruokailu" value="En koskaan"></td>
+    <td><input type="radio" name="Säännöllinen ruokailu" value="Harvoin"></td>
+    <td><input type="radio" name="Säännöllinen ruokailu" value="Usein"></td>
+    <td><input type="radio" name="Säännöllinen ruokailu" value="Päivittäin"></td>
+</tr>
+
+</tbody>
+</table>
+
+<table class="matrix">
+<thead>
+<tr>
+    <th>6.2 Onko sinulla seuraavia ruokailuun liittyviä asioita?</th>
+    <th>Ei</th>
+    <th>Joskus</th>
+    <th>Usein</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+    <td>Ruokahaluttomuutta</td>
+    <td><input type="radio" name="Ruokahaluttomuus" value="Ei"></td>
+    <td><input type="radio" name="Ruokahaluttomuus" value="Joskus"></td>
+    <td><input type="radio" name="Ruokahaluttomuus" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Huolta omasta syömisestä</td>
+    <td><input type="radio" name="Huoli syömisestä" value="Ei"></td>
+    <td><input type="radio" name="Huoli syömisestä" value="Joskus"></td>
+    <td><input type="radio" name="Huoli syömisestä" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Huolta omasta painosta tai kehosta</td>
+    <td><input type="radio" name="Huoli painosta tai kehosta" value="Ei"></td>
+    <td><input type="radio" name="Huoli painosta tai kehosta" value="Joskus"></td>
+    <td><input type="radio" name="Huoli painosta tai kehosta" value="Usein"></td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="question">
+    <label class="question-label"><span class="number">6.3</span>Haluaisitko keskustella ravitsemuksesta tai ruokailusta?</label>
     <div class="options">
-        <label class="option"><input type="radio" name="Koululounas" value="Päivittäin">Päivittäin</label>
-        <label class="option"><input type="radio" name="Koululounas" value="Useimpina päivinä">Useimpina päivinä</label>
-        <label class="option"><input type="radio" name="Koululounas" value="Harvoin">Harvoin</label>
-        <label class="option"><input type="radio" name="Koululounas" value="En koskaan">En koskaan</label>
+        <label class="option"><input type="radio" name="Ravitsemuskeskustelu" value="Ei"> Ei</label>
+        <label class="option"><input type="radio" name="Ravitsemuskeskustelu" value="Ehkä"> Ehkä</label>
+        <label class="option"><input type="radio" name="Ravitsemuskeskustelu" value="Kyllä"> Kyllä</label>
     </div>
 </div>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">5.3</span>Kuinka usein harrastat liikuntaa tai muuta fyysistä aktiivisuutta?
-    </label>
-
-    <select name="Liikunnan määrä">
-        <option value="">Valitse</option>
-        <option>Päivittäin</option>
-        <option>4–6 kertaa viikossa</option>
-        <option>2–3 kertaa viikossa</option>
-        <option>Noin kerran viikossa</option>
-        <option>Harvemmin</option>
-    </select>
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 6 / 14</strong>
 </div>
 
+</section>
+
+<!-- =========================================================
+     7 / 14 LIIKUNTA
+========================================================= -->
+
+<section class="page" data-title="Liikunta ja toimintakyky">
+
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
+        <div class="meta"><strong>Muuramen lukio</strong>Opiskeluterveydenhuolto<br>27.09.2026</div>
+    </div>
+    <div class="header-line"></div>
+</header>
+
+<h2 class="section-title">7. Liikunta ja fyysinen toimintakyky</h2>
+
 <div class="question">
-    <label class="question-label">
-        <span class="qnumber">5.4</span>Mitä liikuntaa tai muuta aktiivisuutta harrastat?
-    </label>
+    <label class="question-label"><span class="number">7.1</span>Kuinka monena päivänä viikossa liikut vähintään jonkin verran?</label>
+    <div class="options">
+        <label class="option"><input type="radio" name="Liikuntapäivät" value="0–1"> 0–1</label>
+        <label class="option"><input type="radio" name="Liikuntapäivät" value="2–3"> 2–3</label>
+        <label class="option"><input type="radio" name="Liikuntapäivät" value="4–5"> 4–5</label>
+        <label class="option"><input type="radio" name="Liikuntapäivät" value="6–7"> 6–7 päivänä</label>
+    </div>
+</div>
+
+<table class="matrix">
+<thead>
+<tr>
+    <th>7.2 Fyysisen toimintakyvyn arviointi</th>
+    <th>Ei</th>
+    <th>Joskus</th>
+    <th>Usein</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+    <td>Liikunta tuottaa minulle iloa tai hyvää oloa</td>
+    <td><input type="radio" name="Liikunnan ilo" value="Ei"></td>
+    <td><input type="radio" name="Liikunnan ilo" value="Joskus"></td>
+    <td><input type="radio" name="Liikunnan ilo" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Kipu tai muu oire rajoittaa liikkumistani</td>
+    <td><input type="radio" name="Liikuntaa rajoittava oire" value="Ei"></td>
+    <td><input type="radio" name="Liikuntaa rajoittava oire" value="Joskus"></td>
+    <td><input type="radio" name="Liikuntaa rajoittava oire" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Hengästyn poikkeuksellisen helposti</td>
+    <td><input type="radio" name="Helppo hengästyminen" value="Ei"></td>
+    <td><input type="radio" name="Helppo hengästyminen" value="Joskus"></td>
+    <td><input type="radio" name="Helppo hengästyminen" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Koen fyysisen kuntoni riittäväksi arjessa</td>
+    <td><input type="radio" name="Fyysinen kunto riittävä" value="Ei"></td>
+    <td><input type="radio" name="Fyysinen kunto riittävä" value="Joskus"></td>
+    <td><input type="radio" name="Fyysinen kunto riittävä" value="Usein"></td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="question">
+    <label class="question-label"><span class="number">7.3</span>Mitä liikuntaa tai muuta fyysistä aktiivisuutta harrastat?</label>
     <textarea name="Liikuntamuodot"></textarea>
 </div>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">5.5</span>Onko syömiseen, ruokahaluun, painoon tai ravitsemukseen liittyviä asioita, joista haluaisit keskustella?
-    </label>
-    <div class="options">
-        <label class="option"><input type="radio" name="Ravitsemuksen keskustelutarve" value="Kyllä">Kyllä</label>
-        <label class="option"><input type="radio" name="Ravitsemuksen keskustelutarve" value="Ei">Ei</label>
-        <label class="option"><input type="radio" name="Ravitsemuksen keskustelutarve" value="Ehkä">Ehkä</label>
-    </div>
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 7 / 14</strong>
 </div>
-
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">5.6</span>Lisätiedot
-    </label>
-    <textarea name="Ravitsemuksen lisätiedot"></textarea>
-</div>
-
-<footer class="document-footer">
-    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto | Muuramen lukio</span>
-    <span class="page-number">Sivu 5 / 10</span>
-</footer>
 
 </section>
 
+<!-- =========================================================
+     8 / 14 OPISKELU
+========================================================= -->
 
-<!-- ======================================================
-     SIVU 6
-     ====================================================== -->
+<section class="page" data-title="Opiskelu ja opiskelukyky">
 
-<section class="page" data-section="Opiskelu">
-
-<header class="document-header">
-    <div class="header-main">
-        <img src="hyvaks-logo.png" class="hyvaks-logo" alt="Keski-Suomen hyvinvointialue">
-        <div class="header-information">
-            <strong>Muuramen lukio</strong>
-            Opiskeluterveydenhuolto<br>27.09.2026
-        </div>
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
+        <div class="meta"><strong>Muuramen lukio</strong>Opiskeluterveydenhuolto<br>27.09.2026</div>
     </div>
-    <div class="header-rule"></div>
+    <div class="header-line"></div>
 </header>
 
-<h2 class="section-title">6. Opiskelu ja kouluyhteisö</h2>
+<h2 class="section-title">8. Opiskelu ja opiskelukyky</h2>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">6.1</span>Miten opintosi ovat mielestäsi lähteneet käyntiin?
-    </label>
+<table class="matrix">
+<thead>
+<tr>
+    <th>8.1 Opiskelun arviointi</th>
+    <th>Ei</th>
+    <th>Harvoin</th>
+    <th>Joskus</th>
+    <th>Usein</th>
+</tr>
+</thead>
+<tbody>
 
-    <select name="Opintojen sujuminen">
-        <option value="">Valitse</option>
-        <option>Erittäin hyvin</option>
-        <option>Hyvin</option>
-        <option>Kohtalaisesti</option>
-        <option>Heikosti</option>
-        <option>Erittäin heikosti</option>
-    </select>
-</div>
+<tr>
+    <td>Koen opiskelun mielekkääksi</td>
+    <td><input type="radio" name="Opiskelun mielekkyys" value="Ei"></td>
+    <td><input type="radio" name="Opiskelun mielekkyys" value="Harvoin"></td>
+    <td><input type="radio" name="Opiskelun mielekkyys" value="Joskus"></td>
+    <td><input type="radio" name="Opiskelun mielekkyys" value="Usein"></td>
+</tr>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">6.2</span>Koetko opiskeluun liittyvää stressiä?
-    </label>
-    <div class="options">
-        <label class="option"><input type="radio" name="Opiskelustressi" value="En lainkaan">En lainkaan</label>
-        <label class="option"><input type="radio" name="Opiskelustressi" value="Jonkin verran">Jonkin verran</label>
-        <label class="option"><input type="radio" name="Opiskelustressi" value="Melko paljon">Melko paljon</label>
-        <label class="option"><input type="radio" name="Opiskelustressi" value="Paljon">Paljon</label>
-    </div>
-</div>
+<tr>
+    <td>Minun on helppo keskittyä oppitunneilla</td>
+    <td><input type="radio" name="Keskittyminen oppitunneilla" value="Ei"></td>
+    <td><input type="radio" name="Keskittyminen oppitunneilla" value="Harvoin"></td>
+    <td><input type="radio" name="Keskittyminen oppitunneilla" value="Joskus"></td>
+    <td><input type="radio" name="Keskittyminen oppitunneilla" value="Usein"></td>
+</tr>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">6.3</span>Onko sinulla koulussa kavereita tai muita henkilöitä, joiden kanssa voit viettää aikaa?
-    </label>
-    <div class="options">
-        <label class="option"><input type="radio" name="Kaverit koulussa" value="Kyllä">Kyllä</label>
-        <label class="option"><input type="radio" name="Kaverit koulussa" value="Jonkin verran">Jonkin verran</label>
-        <label class="option"><input type="radio" name="Kaverit koulussa" value="Ei">Ei</label>
-    </div>
-</div>
+<tr>
+    <td>Saan koulutehtävät tehtyä ajallaan</td>
+    <td><input type="radio" name="Tehtävät ajallaan" value="Ei"></td>
+    <td><input type="radio" name="Tehtävät ajallaan" value="Harvoin"></td>
+    <td><input type="radio" name="Tehtävät ajallaan" value="Joskus"></td>
+    <td><input type="radio" name="Tehtävät ajallaan" value="Usein"></td>
+</tr>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">6.4</span>Onko sinulla ollut poissaoloja, keskittymisvaikeuksia tai muita opiskeluun liittyviä haasteita?
-    </label>
-    <textarea name="Opiskelun haasteet"></textarea>
-</div>
+<tr>
+    <td>Opiskeluun liittyvä työmäärä tuntuu sopivalta</td>
+    <td><input type="radio" name="Opiskelun työmäärä" value="Ei"></td>
+    <td><input type="radio" name="Opiskelun työmäärä" value="Harvoin"></td>
+    <td><input type="radio" name="Opiskelun työmäärä" value="Joskus"></td>
+    <td><input type="radio" name="Opiskelun työmäärä" value="Usein"></td>
+</tr>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">6.5</span>Miten kuvailisit tämänhetkistä jaksamistasi opiskelussa?
-    </label>
-    <textarea class="large" name="Opiskelujaksaminen"></textarea>
-</div>
+<tr>
+    <td>Saan tarvittaessa apua opiskeluun</td>
+    <td><input type="radio" name="Opiskelun tuki" value="Ei"></td>
+    <td><input type="radio" name="Opiskelun tuki" value="Harvoin"></td>
+    <td><input type="radio" name="Opiskelun tuki" value="Joskus"></td>
+    <td><input type="radio" name="Opiskelun tuki" value="Usein"></td>
+</tr>
 
-<footer class="document-footer">
-    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto | Muuramen lukio</span>
-    <span class="page-number">Sivu 6 / 10</span>
-</footer>
-
-</section>
-
-
-<!-- ======================================================
-     SIVU 7
-     ====================================================== -->
-
-<section class="page" data-section="Hyvinvointi">
-
-<header class="document-header">
-    <div class="header-main">
-        <img src="hyvaks-logo.png" class="hyvaks-logo" alt="Keski-Suomen hyvinvointialue">
-        <div class="header-information">
-            <strong>Muuramen lukio</strong>
-            Opiskeluterveydenhuolto<br>27.09.2026
-        </div>
-    </div>
-    <div class="header-rule"></div>
-</header>
-
-<h2 class="section-title">7. Hyvinvointi ja mieliala</h2>
-
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">7.1</span>Millaiseksi arvioit mielialasi viime viikkojen aikana?
-    </label>
-    <select name="Mieliala">
-        <option value="">Valitse</option>
-        <option>Erittäin hyvä</option>
-        <option>Hyvä</option>
-        <option>Vaihteleva</option>
-        <option>Melko matala</option>
-        <option>Matala</option>
-    </select>
-</div>
-
-<table class="compact-table">
-    <thead>
-        <tr>
-            <th>7.2 Viime viikkojen aikana...</th>
-            <th>En</th>
-            <th>Joskus</th>
-            <th>Usein</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Olen tuntenut itseni yksinäiseksi</td>
-            <td><input type="radio" name="Yksinäisyys" value="En"></td>
-            <td><input type="radio" name="Yksinäisyys" value="Joskus"></td>
-            <td><input type="radio" name="Yksinäisyys" value="Usein"></td>
-        </tr>
-
-        <tr>
-            <td>Olen ollut huolissani tai stressaantunut</td>
-            <td><input type="radio" name="Huolestuneisuus" value="En"></td>
-            <td><input type="radio" name="Huolestuneisuus" value="Joskus"></td>
-            <td><input type="radio" name="Huolestuneisuus" value="Usein"></td>
-        </tr>
-
-        <tr>
-            <td>Minun on ollut vaikea rentoutua</td>
-            <td><input type="radio" name="Rentoutumisvaikeus" value="En"></td>
-            <td><input type="radio" name="Rentoutumisvaikeus" value="Joskus"></td>
-            <td><input type="radio" name="Rentoutumisvaikeus" value="Usein"></td>
-        </tr>
-    </tbody>
+</tbody>
 </table>
 
 <div class="question">
-    <label class="question-label">
-        <span class="qnumber">7.3</span>Onko sinulla turvallinen aikuinen, jonka kanssa voit keskustella asioistasi?
-    </label>
+    <label class="question-label"><span class="number">8.2</span>Onko sinulla opiskeluun tai oppimiseen liittyviä vaikeuksia?</label>
     <div class="options">
-        <label class="option"><input type="radio" name="Turvallinen aikuinen" value="Kyllä">Kyllä</label>
-        <label class="option"><input type="radio" name="Turvallinen aikuinen" value="Ei">Ei</label>
-        <label class="option"><input type="radio" name="Turvallinen aikuinen" value="En osaa sanoa">En osaa sanoa</label>
+        <label class="option"><input type="radio" name="Oppimisvaikeudet" value="Ei"> Ei</label>
+        <label class="option"><input type="radio" name="Oppimisvaikeudet" value="Ehkä"> Ehkä</label>
+        <label class="option"><input type="radio" name="Oppimisvaikeudet" value="Kyllä"> Kyllä</label>
     </div>
 </div>
 
 <div class="question">
-    <label class="question-label">
-        <span class="qnumber">7.4</span>Mitkä asiat tukevat hyvinvointiasi?
-    </label>
-    <textarea name="Hyvinvointia tukevat asiat"></textarea>
+    <label class="question-label"><span class="number">8.3</span>Onko sinulla ollut terveydentilaan tai jaksamiseen liittyviä poissaoloja?</label>
+    <div class="options">
+        <label class="option"><input type="radio" name="Terveysperusteiset poissaolot" value="Ei"> Ei</label>
+        <label class="option"><input type="radio" name="Terveysperusteiset poissaolot" value="Jonkin verran"> Jonkin verran</label>
+        <label class="option"><input type="radio" name="Terveysperusteiset poissaolot" value="Paljon"> Paljon</label>
+    </div>
 </div>
 
 <div class="question">
-    <label class="question-label">
-        <span class="qnumber">7.5</span>Onko mielialaan tai hyvinvointiin liittyviä asioita, joista haluaisit keskustella terveystarkastuksessa?
-    </label>
-    <textarea name="Hyvinvoinnin keskustelutoive"></textarea>
+    <label class="question-label"><span class="number">8.4</span>Opiskeluun liittyvät lisätiedot</label>
+    <textarea name="Opiskelun lisätiedot"></textarea>
 </div>
 
-<footer class="document-footer">
-    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto | Muuramen lukio</span>
-    <span class="page-number">Sivu 7 / 10</span>
-</footer>
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 8 / 14</strong>
+</div>
 
 </section>
 
+<!-- =========================================================
+     9 / 14 MIELIALA
+========================================================= -->
 
-<!-- ======================================================
-     SIVU 8
-     ====================================================== -->
+<section class="page" data-title="Mieliala ja jaksaminen">
 
-<section class="page" data-section="Terveystottumukset">
-
-<header class="document-header">
-    <div class="header-main">
-        <img src="hyvaks-logo.png" class="hyvaks-logo" alt="Keski-Suomen hyvinvointialue">
-        <div class="header-information">
-            <strong>Muuramen lukio</strong>
-            Opiskeluterveydenhuolto<br>27.09.2026
-        </div>
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
+        <div class="meta"><strong>Muuramen lukio</strong>Opiskeluterveydenhuolto<br>27.09.2026</div>
     </div>
-    <div class="header-rule"></div>
+    <div class="header-line"></div>
 </header>
 
-<h2 class="section-title">8. Terveystottumukset</h2>
+<h2 class="section-title">9. Mieliala ja jaksaminen</h2>
+
+<p style="font-size:11px;color:#647178;margin-top:-8px;margin-bottom:14px;">
+    Arvioi kokemuksiasi viimeisten viikkojen ajalta.
+</p>
+
+<table class="matrix">
+<thead>
+<tr>
+    <th>9.1 Viimeisten viikkojen aikana...</th>
+    <th>En</th>
+    <th>Harvoin</th>
+    <th>Joskus</th>
+    <th>Usein</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+    <td>Olen ollut hyvällä mielellä</td>
+    <td><input type="radio" name="Hyvä mieliala" value="En"></td>
+    <td><input type="radio" name="Hyvä mieliala" value="Harvoin"></td>
+    <td><input type="radio" name="Hyvä mieliala" value="Joskus"></td>
+    <td><input type="radio" name="Hyvä mieliala" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Olen tuntenut stressiä</td>
+    <td><input type="radio" name="Stressi" value="En"></td>
+    <td><input type="radio" name="Stressi" value="Harvoin"></td>
+    <td><input type="radio" name="Stressi" value="Joskus"></td>
+    <td><input type="radio" name="Stressi" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Olen ollut huolissani tai ahdistunut</td>
+    <td><input type="radio" name="Huolestuneisuus tai ahdistuneisuus" value="En"></td>
+    <td><input type="radio" name="Huolestuneisuus tai ahdistuneisuus" value="Harvoin"></td>
+    <td><input type="radio" name="Huolestuneisuus tai ahdistuneisuus" value="Joskus"></td>
+    <td><input type="radio" name="Huolestuneisuus tai ahdistuneisuus" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Olen tuntenut itseni alakuloiseksi</td>
+    <td><input type="radio" name="Alakuloisuus" value="En"></td>
+    <td><input type="radio" name="Alakuloisuus" value="Harvoin"></td>
+    <td><input type="radio" name="Alakuloisuus" value="Joskus"></td>
+    <td><input type="radio" name="Alakuloisuus" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Minun on ollut vaikea rentoutua</td>
+    <td><input type="radio" name="Rentoutumisvaikeus" value="En"></td>
+    <td><input type="radio" name="Rentoutumisvaikeus" value="Harvoin"></td>
+    <td><input type="radio" name="Rentoutumisvaikeus" value="Joskus"></td>
+    <td><input type="radio" name="Rentoutumisvaikeus" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Olen kokenut, että voimavarani riittävät arkeen</td>
+    <td><input type="radio" name="Voimavarojen riittävyys" value="En"></td>
+    <td><input type="radio" name="Voimavarojen riittävyys" value="Harvoin"></td>
+    <td><input type="radio" name="Voimavarojen riittävyys" value="Joskus"></td>
+    <td><input type="radio" name="Voimavarojen riittävyys" value="Usein"></td>
+</tr>
+
+</tbody>
+</table>
 
 <div class="question">
-    <label class="question-label">
-        <span class="qnumber">8.1</span>Käytätkö nikotiinituotteita?
-    </label>
+    <label class="question-label"><span class="number">9.2</span>Miten arvioit tämänhetkisen jaksamisesi kokonaisuutena?</label>
     <div class="options">
-        <label class="option"><input type="radio" name="Nikotiinituotteet" value="En">En</label>
-        <label class="option"><input type="radio" name="Nikotiinituotteet" value="Olen kokeillut">Olen kokeillut</label>
-        <label class="option"><input type="radio" name="Nikotiinituotteet" value="Joskus">Joskus</label>
-        <label class="option"><input type="radio" name="Nikotiinituotteet" value="Säännöllisesti">Säännöllisesti</label>
+        <label class="option"><input type="radio" name="Jaksamisen kokonaisarvio" value="Erittäin hyvä"> Erittäin hyvä</label>
+        <label class="option"><input type="radio" name="Jaksamisen kokonaisarvio" value="Hyvä"> Hyvä</label>
+        <label class="option"><input type="radio" name="Jaksamisen kokonaisarvio" value="Kohtalainen"> Kohtalainen</label>
+        <label class="option"><input type="radio" name="Jaksamisen kokonaisarvio" value="Heikko"> Heikko</label>
     </div>
 </div>
 
 <div class="question">
-    <label class="question-label">
-        <span class="qnumber">8.2</span>Käytätkö alkoholia?
-    </label>
+    <label class="question-label"><span class="number">9.3</span>Haluaisitko keskustella mielialastasi tai jaksamisestasi?</label>
     <div class="options">
-        <label class="option"><input type="radio" name="Alkoholin käyttö" value="En">En</label>
-        <label class="option"><input type="radio" name="Alkoholin käyttö" value="Harvoin">Harvoin</label>
-        <label class="option"><input type="radio" name="Alkoholin käyttö" value="Joskus">Joskus</label>
-        <label class="option"><input type="radio" name="Alkoholin käyttö" value="Usein">Usein</label>
+        <label class="option"><input type="radio" name="Mielialakeskustelu" value="Ei"> Ei</label>
+        <label class="option"><input type="radio" name="Mielialakeskustelu" value="Ehkä"> Ehkä</label>
+        <label class="option"><input type="radio" name="Mielialakeskustelu" value="Kyllä"> Kyllä</label>
     </div>
 </div>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">8.3</span>Käytätkö energiajuomia?
-    </label>
-    <div class="options">
-        <label class="option"><input type="radio" name="Energiajuomat" value="En">En</label>
-        <label class="option"><input type="radio" name="Energiajuomat" value="Harvoin">Harvoin</label>
-        <label class="option"><input type="radio" name="Energiajuomat" value="Viikoittain">Viikoittain</label>
-        <label class="option"><input type="radio" name="Energiajuomat" value="Päivittäin">Päivittäin</label>
-    </div>
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 9 / 14</strong>
 </div>
-
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">8.4</span>Kuinka paljon käytät vapaa-ajallasi puhelinta, tietokonetta tai muita näyttölaitteita?
-    </label>
-    <input type="text" name="Vapaa-ajan ruutuaika" placeholder="Arvio tuntia / päivä">
-</div>
-
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">8.5</span>Haluaisitko keskustella jostakin terveystottumuksiin liittyvästä asiasta?
-    </label>
-    <textarea class="large" name="Terveystottumusten keskustelutoive"></textarea>
-</div>
-
-<footer class="document-footer">
-    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto | Muuramen lukio</span>
-    <span class="page-number">Sivu 8 / 10</span>
-</footer>
 
 </section>
 
+<!-- =========================================================
+     10 / 14 IHMISSUHTEET
+========================================================= -->
 
-<!-- ======================================================
-     SIVU 9
-     ====================================================== -->
+<section class="page" data-title="Ihmissuhteet ja arki">
 
-<section class="page" data-section="Seksuaaliterveys ja terveystarkastus">
-
-<header class="document-header">
-    <div class="header-main">
-        <img src="hyvaks-logo.png" class="hyvaks-logo" alt="Keski-Suomen hyvinvointialue">
-        <div class="header-information">
-            <strong>Muuramen lukio</strong>
-            Opiskeluterveydenhuolto<br>27.09.2026
-        </div>
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
+        <div class="meta"><strong>Muuramen lukio</strong>Opiskeluterveydenhuolto<br>27.09.2026</div>
     </div>
-    <div class="header-rule"></div>
+    <div class="header-line"></div>
 </header>
 
-<h2 class="section-title">9. Seksuaaliterveys ja terveystarkastuksen toiveet</h2>
+<h2 class="section-title">10. Ihmissuhteet, turvallisuus ja arki</h2>
+
+<table class="matrix">
+<thead>
+<tr>
+    <th>10.1 Arjen ja ihmissuhteiden arviointi</th>
+    <th>Ei</th>
+    <th>Joskus</th>
+    <th>Usein</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+    <td>Minulla on ystävä tai muu läheinen, jonka kanssa voin puhua</td>
+    <td><input type="radio" name="Läheinen ihminen" value="Ei"></td>
+    <td><input type="radio" name="Läheinen ihminen" value="Joskus"></td>
+    <td><input type="radio" name="Läheinen ihminen" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Tunnen oloni yksinäiseksi</td>
+    <td><input type="radio" name="Yksinäisyys" value="Ei"></td>
+    <td><input type="radio" name="Yksinäisyys" value="Joskus"></td>
+    <td><input type="radio" name="Yksinäisyys" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Koen kuuluvani kouluyhteisöön</td>
+    <td><input type="radio" name="Kouluyhteisöön kuuluminen" value="Ei"></td>
+    <td><input type="radio" name="Kouluyhteisöön kuuluminen" value="Joskus"></td>
+    <td><input type="radio" name="Kouluyhteisöön kuuluminen" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Koen oloni turvalliseksi koulussa</td>
+    <td><input type="radio" name="Turvallisuus koulussa" value="Ei"></td>
+    <td><input type="radio" name="Turvallisuus koulussa" value="Joskus"></td>
+    <td><input type="radio" name="Turvallisuus koulussa" value="Usein"></td>
+</tr>
+
+<tr>
+    <td>Koen oloni turvalliseksi kotona</td>
+    <td><input type="radio" name="Turvallisuus kotona" value="Ei"></td>
+    <td><input type="radio" name="Turvallisuus kotona" value="Joskus"></td>
+    <td><input type="radio" name="Turvallisuus kotona" value="Usein"></td>
+</tr>
+
+</tbody>
+</table>
 
 <div class="question">
-    <label class="question-label">
-        <span class="qnumber">9.1</span>Haluaisitko keskustella seksuaaliterveyteen liittyvistä asioista?
-    </label>
+    <label class="question-label"><span class="number">10.2</span>Oletko kokenut kiusaamista tämän lukuvuoden aikana?</label>
     <div class="options">
-        <label class="option"><input type="radio" name="Seksuaaliterveyden keskustelutoive" value="Kyllä">Kyllä</label>
-        <label class="option"><input type="radio" name="Seksuaaliterveyden keskustelutoive" value="Ei">Ei</label>
-        <label class="option"><input type="radio" name="Seksuaaliterveyden keskustelutoive" value="Ehkä">Ehkä</label>
+        <label class="option"><input type="radio" name="Kiusaaminen" value="En"> En</label>
+        <label class="option"><input type="radio" name="Kiusaaminen" value="Harvoin"> Harvoin</label>
+        <label class="option"><input type="radio" name="Kiusaaminen" value="Joskus"> Joskus</label>
+        <label class="option"><input type="radio" name="Kiusaaminen" value="Usein"> Usein</label>
     </div>
 </div>
 
 <div class="question">
-    <label class="question-label">
-        <span class="qnumber">9.2</span>Haluaisitko tietoa ehkäisystä tai ehkäisypalveluista?
-    </label>
+    <label class="question-label"><span class="number">10.3</span>Onko sinulla turvallinen aikuinen, jolta saat tarvittaessa apua?</label>
     <div class="options">
-        <label class="option"><input type="radio" name="Ehkäisyneuvonnan tarve" value="Kyllä">Kyllä</label>
-        <label class="option"><input type="radio" name="Ehkäisyneuvonnan tarve" value="Ei">Ei</label>
-        <label class="option"><input type="radio" name="Ehkäisyneuvonnan tarve" value="Ehkä">Ehkä</label>
+        <label class="option"><input type="radio" name="Turvallinen aikuinen" value="Kyllä"> Kyllä</label>
+        <label class="option"><input type="radio" name="Turvallinen aikuinen" value="Ehkä"> Ehkä</label>
+        <label class="option"><input type="radio" name="Turvallinen aikuinen" value="Ei"> Ei</label>
     </div>
 </div>
 
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">9.3</span>Onko sinulla jokin asia, jonka haluat ottaa terveystarkastuksessa erityisesti esille?
-    </label>
-    <textarea class="large" name="Terveystarkastuksessa käsiteltävät asiat"></textarea>
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 10 / 14</strong>
 </div>
-
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">9.4</span>Mitä odotat tai toivot terveystarkastukselta?
-    </label>
-    <textarea class="large" name="Terveystarkastuksen toiveet"></textarea>
-</div>
-
-<div class="question">
-    <label class="question-label">
-        <span class="qnumber">9.5</span>Muut tiedot, jotka haluat kertoa terveydenhoitajalle
-    </label>
-    <textarea class="large" name="Muut terveydenhoitajalle annettavat tiedot"></textarea>
-</div>
-
-<footer class="document-footer">
-    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto | Muuramen lukio</span>
-    <span class="page-number">Sivu 9 / 10</span>
-</footer>
 
 </section>
 
+<!-- =========================================================
+     11 / 14 PÄIHTEET
+========================================================= -->
 
-<!-- ======================================================
-     SIVU 10
-     ====================================================== -->
+<section class="page" data-title="Nikotiini, alkoholi ja muut päihteet">
 
-<section class="page" data-section="Yhteenveto">
-
-<header class="document-header">
-    <div class="header-main">
-        <img src="hyvaks-logo.png" class="hyvaks-logo" alt="Keski-Suomen hyvinvointialue">
-        <div class="header-information">
-            <strong>Muuramen lukio</strong>
-            Opiskeluterveydenhuolto<br>27.09.2026
-        </div>
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
+        <div class="meta"><strong>Muuramen lukio</strong>Opiskeluterveydenhuolto<br>27.09.2026</div>
     </div>
-    <div class="header-rule"></div>
+    <div class="header-line"></div>
 </header>
 
-<h2 class="section-title">10. Tietojen tarkistaminen</h2>
+<h2 class="section-title">11. Nikotiini, alkoholi ja muut päihteet</h2>
 
-<div class="info-box">
-    Tarkista antamasi tiedot. Voit palata aikaisemmille sivuille
-    Edellinen-painikkeella ja korjata vastauksiasi.
+<table class="matrix">
+<thead>
+<tr>
+    <th>11.1 Kuinka usein käytät seuraavia?</th>
+    <th>En koskaan</th>
+    <th>Olen kokeillut</th>
+    <th>Joskus</th>
+    <th>Säännöllisesti</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+    <td>Savukkeet</td>
+    <td><input type="radio" name="Savukkeet" value="En koskaan"></td>
+    <td><input type="radio" name="Savukkeet" value="Olen kokeillut"></td>
+    <td><input type="radio" name="Savukkeet" value="Joskus"></td>
+    <td><input type="radio" name="Savukkeet" value="Säännöllisesti"></td>
+</tr>
+
+<tr>
+    <td>Sähkösavukkeet / vape</td>
+    <td><input type="radio" name="Sähkösavukkeet" value="En koskaan"></td>
+    <td><input type="radio" name="Sähkösavukkeet" value="Olen kokeillut"></td>
+    <td><input type="radio" name="Sähkösavukkeet" value="Joskus"></td>
+    <td><input type="radio" name="Sähkösavukkeet" value="Säännöllisesti"></td>
+</tr>
+
+<tr>
+    <td>Nuuska tai nikotiinipussit</td>
+    <td><input type="radio" name="Nuuska tai nikotiinipussit" value="En koskaan"></td>
+    <td><input type="radio" name="Nuuska tai nikotiinipussit" value="Olen kokeillut"></td>
+    <td><input type="radio" name="Nuuska tai nikotiinipussit" value="Joskus"></td>
+    <td><input type="radio" name="Nuuska tai nikotiinipussit" value="Säännöllisesti"></td>
+</tr>
+
+<tr>
+    <td>Alkoholi</td>
+    <td><input type="radio" name="Alkoholi" value="En koskaan"></td>
+    <td><input type="radio" name="Alkoholi" value="Olen kokeillut"></td>
+    <td><input type="radio" name="Alkoholi" value="Joskus"></td>
+    <td><input type="radio" name="Alkoholi" value="Säännöllisesti"></td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="question">
+    <label class="question-label"><span class="number">11.2</span>Oletko käyttänyt muita päihdyttäviä aineita?</label>
+    <div class="options">
+        <label class="option"><input type="radio" name="Muut päihteet" value="En"> En</label>
+        <label class="option"><input type="radio" name="Muut päihteet" value="Olen kokeillut"> Olen kokeillut</label>
+        <label class="option"><input type="radio" name="Muut päihteet" value="Kyllä"> Kyllä</label>
+    </div>
+</div>
+
+<div class="question">
+    <label class="question-label"><span class="number">11.3</span>Haluaisitko keskustella nikotiinin, alkoholin tai muiden päihteiden käytöstä?</label>
+    <div class="options">
+        <label class="option"><input type="radio" name="Päihdekeskustelu" value="Ei"> Ei</label>
+        <label class="option"><input type="radio" name="Päihdekeskustelu" value="Ehkä"> Ehkä</label>
+        <label class="option"><input type="radio" name="Päihdekeskustelu" value="Kyllä"> Kyllä</label>
+    </div>
+</div>
+
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 11 / 14</strong>
+</div>
+
+</section>
+
+<!-- =========================================================
+     12 / 14 SEKSUAALITERVEYS
+========================================================= -->
+
+<section class="page" data-title="Seksuaaliterveys">
+
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
+        <div class="meta"><strong>Muuramen lukio</strong>Opiskeluterveydenhuolto<br>27.09.2026</div>
+    </div>
+    <div class="header-line"></div>
+</header>
+
+<h2 class="section-title">12. Seksuaaliterveys</h2>
+
+<div class="info">
+    Seksuaaliterveyteen liittyvistä asioista voi keskustella
+    opiskeluterveydenhuollossa luottamuksellisesti.
+</div>
+
+<table class="matrix">
+<thead>
+<tr>
+    <th>12.1 Haluaisitko tietoa tai keskustella seuraavista?</th>
+    <th>Kyllä</th>
+    <th>Ehkä</th>
+    <th>Ei</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+    <td>Ehkäisy</td>
+    <td><input type="radio" name="Keskustelu ehkäisystä" value="Kyllä"></td>
+    <td><input type="radio" name="Keskustelu ehkäisystä" value="Ehkä"></td>
+    <td><input type="radio" name="Keskustelu ehkäisystä" value="Ei"></td>
+</tr>
+
+<tr>
+    <td>Seksitaudit ja niiden ehkäisy</td>
+    <td><input type="radio" name="Keskustelu seksitaudeista" value="Kyllä"></td>
+    <td><input type="radio" name="Keskustelu seksitaudeista" value="Ehkä"></td>
+    <td><input type="radio" name="Keskustelu seksitaudeista" value="Ei"></td>
+</tr>
+
+<tr>
+    <td>Seksuaaliterveyteen liittyvä huoli</td>
+    <td><input type="radio" name="Seksuaaliterveyshuoli" value="Kyllä"></td>
+    <td><input type="radio" name="Seksuaaliterveyshuoli" value="Ehkä"></td>
+    <td><input type="radio" name="Seksuaaliterveyshuoli" value="Ei"></td>
+</tr>
+
+<tr>
+    <td>Seksuaalisuuteen tai ihmissuhteisiin liittyvät kysymykset</td>
+    <td><input type="radio" name="Seksuaalisuuden kysymykset" value="Kyllä"></td>
+    <td><input type="radio" name="Seksuaalisuuden kysymykset" value="Ehkä"></td>
+    <td><input type="radio" name="Seksuaalisuuden kysymykset" value="Ei"></td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="question">
+    <label class="question-label"><span class="number">12.2</span>Onko sinulla tällä hetkellä ehkäisyyn liittyvä neuvonnan tai palvelun tarve?</label>
+    <div class="options">
+        <label class="option"><input type="radio" name="Ehkäisypalvelun tarve" value="Ei"> Ei</label>
+        <label class="option"><input type="radio" name="Ehkäisypalvelun tarve" value="Ehkä"> Ehkä</label>
+        <label class="option"><input type="radio" name="Ehkäisypalvelun tarve" value="Kyllä"> Kyllä</label>
+    </div>
+</div>
+
+<div class="question">
+    <label class="question-label"><span class="number">12.3</span>Voit halutessasi kirjoittaa tähän seksuaaliterveyteen liittyvän kysymyksen tai asian.</label>
+    <textarea class="medium" name="Seksuaaliterveyden lisätiedot"></textarea>
+</div>
+
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 12 / 14</strong>
+</div>
+
+</section>
+
+<!-- =========================================================
+     13 / 14 TOIVEET
+========================================================= -->
+
+<section class="page" data-title="Terveystarkastuksen toiveet">
+
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
+        <div class="meta"><strong>Muuramen lukio</strong>Opiskeluterveydenhuolto<br>27.09.2026</div>
+    </div>
+    <div class="header-line"></div>
+</header>
+
+<h2 class="section-title">13. Terveystarkastuksen toiveet</h2>
+
+<div class="question">
+    <label class="question-label">
+        <span class="number">13.1</span>Mistä asioista haluaisit keskustella terveystarkastuksessa?
+        <span class="help">Voit valita useita vaihtoehtoja.</span>
+    </label>
+
+    <div class="check-grid">
+
+        <label><input type="checkbox" name="Keskustelutoive: yleinen terveys"> Yleinen terveydentila</label>
+        <label><input type="checkbox" name="Keskustelutoive: oireet"> Oireet tai kivut</label>
+
+        <label><input type="checkbox" name="Keskustelutoive: uni"> Uni ja palautuminen</label>
+        <label><input type="checkbox" name="Keskustelutoive: ravitsemus"> Ravitsemus</label>
+
+        <label><input type="checkbox" name="Keskustelutoive: liikunta"> Liikunta ja fyysinen kunto</label>
+        <label><input type="checkbox" name="Keskustelutoive: opiskelu"> Opiskelu ja oppiminen</label>
+
+        <label><input type="checkbox" name="Keskustelutoive: jaksaminen"> Jaksaminen ja stressi</label>
+        <label><input type="checkbox" name="Keskustelutoive: mieliala"> Mieliala</label>
+
+        <label><input type="checkbox" name="Keskustelutoive: ihmissuhteet"> Ihmissuhteet</label>
+        <label><input type="checkbox" name="Keskustelutoive: päihteet"> Nikotiini tai päihteet</label>
+
+        <label><input type="checkbox" name="Keskustelutoive: seksuaaliterveys"> Seksuaaliterveys ja ehkäisy</label>
+        <label><input type="checkbox" name="Keskustelutoive: rokotukset"> Rokotukset</label>
+
+    </div>
+</div>
+
+<div class="question">
+    <label class="question-label"><span class="number">13.2</span>Onko jokin asia, jonka toivot otettavan terveystarkastuksessa erityisesti esille?</label>
+    <textarea class="medium" name="Erityisesti käsiteltävä asia"></textarea>
+</div>
+
+<div class="question">
+    <label class="question-label"><span class="number">13.3</span>Onko jotain sellaista terveyteesi tai hyvinvointiisi liittyvää, jota kyselyssä ei kysytty?</label>
+    <textarea class="medium" name="Muut terveystiedot"></textarea>
+</div>
+
+<div class="question">
+    <label class="question-label"><span class="number">13.4</span>Haluatko, että terveydenhoitaja ottaa jonkin asian itse puheeksi vastaanotolla?</label>
+    <div class="options">
+        <label class="option"><input type="radio" name="Terveydenhoitajan puheeksiotto" value="Ei"> Ei</label>
+        <label class="option"><input type="radio" name="Terveydenhoitajan puheeksiotto" value="Ehkä"> Ehkä</label>
+        <label class="option"><input type="radio" name="Terveydenhoitajan puheeksiotto" value="Kyllä"> Kyllä</label>
+    </div>
+</div>
+
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 13 / 14</strong>
+</div>
+
+</section>
+
+<!-- =========================================================
+     14 / 14 YHTEENVETO
+========================================================= -->
+
+<section class="page" data-title="Tietojen tarkistaminen">
+
+<header class="header">
+    <div class="header-top">
+        <img src="hyvaks-logo.png" class="logo" alt="Keski-Suomen hyvinvointialue">
+        <div class="meta"><strong>Muuramen lukio</strong>Opiskeluterveydenhuolto<br>27.09.2026</div>
+    </div>
+    <div class="header-line"></div>
+</header>
+
+<h2 class="section-title">14. Tietojen tarkistaminen</h2>
+
+<div class="info">
+    Tarkista antamasi vastaukset. Voit palata aikaisemmille sivuille
+    Edellinen-painikkeella ja muuttaa vastauksiasi.
 </div>
 
 <div id="summary"></div>
 
 <div class="confirmation">
     <label>
-        <input type="checkbox" name="Tietojen vahvistus" value="Vahvistettu">
+        <input type="checkbox" name="Tietojen vahvistus">
         <span>
-            Olen tarkistanut antamani tiedot ja vahvistan, että lomake
-            on täytetty parhaan tietoni mukaisesti.
+            Olen tarkistanut antamani tiedot ja vahvistan niiden olevan
+            parhaan tietoni mukaan oikein.
         </span>
     </label>
 </div>
@@ -1465,100 +1998,98 @@ input[type="checkbox"]{
         Tulosta / tallenna PDF
     </button>
 
-    <button type="button" class="action-button gray" onclick="clearForm()">
+    <button type="button" class="action-button secondary" onclick="clearForm()">
         Tyhjennä lomake
     </button>
 </div>
 
-<footer class="document-footer">
-    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto | Muuramen lukio</span>
-    <span class="page-number">Sivu 10 / 10</span>
-</footer>
+<div class="footer">
+    <span>Keski-Suomen hyvinvointialue | Opiskeluterveydenhuolto</span>
+    <strong>Sivu 14 / 14</strong>
+</div>
 
 </section>
 
 </form>
 </main>
 
-
-<!-- ======================================================
-     SIVUNVAIHTO
-     ====================================================== -->
+<!-- =========================================================
+     NAVIGOINTI
+========================================================= -->
 
 <nav class="navigation">
 
 <button
     type="button"
-    id="previousButton"
     class="nav-button secondary"
+    id="previousButton"
     onclick="changePage(-1)">
     ← Edellinen
 </button>
 
-<div class="progress-area">
+<div>
     <div class="progress-track">
-        <div id="progressValue" class="progress-value"></div>
+        <div class="progress-value" id="progressValue"></div>
     </div>
 
-    <div id="progressLabel" class="progress-label">
-        Sivu 1 / 10
+    <div class="progress-text" id="progressText">
+        Sivu 1 / 14
     </div>
 </div>
 
 <button
     type="button"
-    id="nextButton"
     class="nav-button"
+    id="nextButton"
     onclick="changePage(1)">
     Seuraava →
 </button>
 
 </nav>
 
-
 <script>
 
 /* =========================================================
-   PERUSASETUKSET
-   ========================================================= */
+   SIVUNVAIHTO
+========================================================= */
 
 let currentPage = 0;
 
 const pages = Array.from(document.querySelectorAll(".page"));
 const totalPages = pages.length;
 
-const previousButton = document.getElementById("previousButton");
-const nextButton = document.getElementById("nextButton");
+const previousButton =
+    document.getElementById("previousButton");
 
-const storageKey = "opiskeluterveydenhuolto-terveyskysely";
-
-
-/* =========================================================
-   SIVUN NÄYTTÄMINEN
-   ========================================================= */
+const nextButton =
+    document.getElementById("nextButton");
 
 function showPage(index){
 
-    pages.forEach((page, pageIndex) => {
-        page.classList.toggle("active", pageIndex === index);
+    pages.forEach((page,i)=>{
+        page.classList.toggle("active",i === index);
     });
 
     previousButton.disabled = index === 0;
 
     if(index === totalPages - 1){
         nextButton.style.visibility = "hidden";
-        buildSummary();
-    } else {
+        createSummary();
+    }else{
         nextButton.style.visibility = "visible";
     }
 
-    const pageLabel = `Sivu ${index + 1} / ${totalPages}`;
+    const label =
+        `Sivu ${index + 1} / ${totalPages}`;
 
-    document.getElementById("viewerPage").textContent = pageLabel;
-    document.getElementById("progressLabel").textContent = pageLabel;
+    document.getElementById("viewerPage").textContent =
+        label;
+
+    document.getElementById("progressText").textContent =
+        label;
 
     document.getElementById("progressValue").style.width =
-        (((index + 1) / totalPages) * 100) + "%";
+        ((index + 1) / totalPages * 100) + "%";
 
     window.scrollTo({
         top:0,
@@ -1566,217 +2097,183 @@ function showPage(index){
     });
 }
 
-
-/* =========================================================
-   SIVUNVAIHTO
-   ========================================================= */
-
 function changePage(direction){
 
-    saveForm();
+    const next =
+        currentPage + direction;
 
-    const targetPage = currentPage + direction;
-
-    if(targetPage < 0 || targetPage >= totalPages){
+    if(next < 0 || next >= totalPages){
         return;
     }
 
-    currentPage = targetPage;
+    currentPage = next;
+
     showPage(currentPage);
 }
 
-
 /* =========================================================
-   TALLENNUS SELAIMEEN
-   ========================================================= */
+   EHDOLLISET LISÄKYSYMYKSET
+========================================================= */
 
-function saveForm(){
+document
+.querySelectorAll('input[type="radio"][data-follow]')
+.forEach(input=>{
 
-    const form = document.getElementById("healthForm");
+    input.addEventListener("change",function(){
 
-    const data = {};
+        const groupName =
+            this.name;
 
-    form.querySelectorAll("input, textarea, select").forEach(field => {
+        const group =
+            document.querySelectorAll(
+                `input[type="radio"][name="${CSS.escape(groupName)}"]`
+            );
 
-        if(!field.name){
-            return;
-        }
+        const targetId =
+            this.dataset.follow;
 
-        if(field.type === "radio"){
+        const target =
+            document.getElementById(targetId);
 
-            if(field.checked){
-                data[field.name] = field.value;
+        let selectedValue = "";
+
+        group.forEach(item=>{
+            if(item.checked){
+                selectedValue = item.value;
             }
+        });
 
-        } else if(field.type === "checkbox"){
-
-            data[field.name] = field.checked;
-
-        } else {
-
-            data[field.name] = field.value;
-
+        if(
+            selectedValue === "Kyllä" ||
+            selectedValue === "En osaa sanoa" ||
+            selectedValue === "En tiedä"
+        ){
+            target.classList.add("visible");
+        }else{
+            target.classList.remove("visible");
         }
 
     });
 
-    localStorage.setItem(storageKey, JSON.stringify(data));
-}
-
-
-/* =========================================================
-   TALLENNETTUJEN TIETOJEN PALAUTTAMINEN
-   ========================================================= */
-
-function loadForm(){
-
-    const saved = localStorage.getItem(storageKey);
-
-    if(!saved){
-        return;
-    }
-
-    let data;
-
-    try{
-        data = JSON.parse(saved);
-    } catch(error){
-        return;
-    }
-
-    const form = document.getElementById("healthForm");
-
-    form.querySelectorAll("input, textarea, select").forEach(field => {
-
-        if(!field.name){
-            return;
-        }
-
-        if(data[field.name] === undefined){
-            return;
-        }
-
-        if(field.type === "radio"){
-
-            field.checked =
-                field.value === data[field.name];
-
-        } else if(field.type === "checkbox"){
-
-            field.checked =
-                data[field.name] === true;
-
-        } else {
-
-            field.value = data[field.name];
-
-        }
-
-    });
-}
-
+});
 
 /* =========================================================
    YHTEENVETO
-   ========================================================= */
+========================================================= */
 
-function buildSummary(){
+function createSummary(){
 
-    saveForm();
-
-    const summary = document.getElementById("summary");
+    const summary =
+        document.getElementById("summary");
 
     summary.innerHTML = "";
 
-    pages.slice(0, 9).forEach((page, pageIndex) => {
+    pages.slice(0,totalPages - 1)
+    .forEach((page,index)=>{
 
-        const sectionTitle =
-            page.getAttribute("data-section") ||
-            `Osio ${pageIndex + 1}`;
+        const answers = [];
 
-        const values = [];
+        const handledRadios =
+            new Set();
 
-        const processedRadioNames = new Set();
-
-        page.querySelectorAll("input, textarea, select").forEach(field => {
+        page
+        .querySelectorAll("input,textarea,select")
+        .forEach(field=>{
 
             if(!field.name){
                 return;
             }
 
-            let value = "";
+            let answer = "";
 
             if(field.type === "radio"){
 
-                if(processedRadioNames.has(field.name)){
+                if(handledRadios.has(field.name)){
                     return;
                 }
 
-                processedRadioNames.add(field.name);
+                handledRadios.add(field.name);
 
-                const checked =
+                const selected =
                     page.querySelector(
                         `input[type="radio"][name="${CSS.escape(field.name)}"]:checked`
                     );
 
-                value = checked ? checked.value : "";
-
-            } else if(field.type === "checkbox"){
-
-                value = field.checked ? "Kyllä" : "";
-
-            } else {
-
-                value = field.value.trim();
+                if(selected){
+                    answer = selected.value;
+                }
 
             }
 
-            if(value){
+            else if(field.type === "checkbox"){
 
-                values.push({
-                    name:field.name,
-                    value:value
+                if(field.checked){
+                    answer = "Valittu";
+                }
+
+            }
+
+            else{
+
+                answer =
+                    field.value.trim();
+
+            }
+
+            if(answer){
+
+                answers.push({
+                    question:field.name,
+                    answer:answer
                 });
 
             }
 
         });
 
-        if(values.length === 0){
+        if(answers.length === 0){
             return;
         }
 
         const section =
             document.createElement("div");
 
-        section.className = "summary-section";
+        section.className =
+            "summary-section";
 
-        const heading =
+        const title =
             document.createElement("h3");
 
-        heading.textContent =
-            `${pageIndex + 1}. ${sectionTitle}`;
+        title.textContent =
+            `${index + 1}. ${page.dataset.title}`;
 
-        section.appendChild(heading);
+        section.appendChild(title);
 
-        values.forEach(item => {
+        answers.forEach(item=>{
 
             const row =
                 document.createElement("div");
 
-            row.className = "summary-row";
+            row.className =
+                "summary-row";
 
             const key =
                 document.createElement("div");
 
-            key.className = "summary-key";
-            key.textContent = item.name;
+            key.className =
+                "summary-key";
+
+            key.textContent =
+                item.question;
 
             const value =
                 document.createElement("div");
 
-            value.className = "summary-value";
-            value.textContent = item.value;
+            value.className =
+                "summary-value";
+
+            value.textContent =
+                item.answer;
 
             row.appendChild(key);
             row.appendChild(value);
@@ -1789,7 +2286,7 @@ function buildSummary(){
 
     });
 
-    if(summary.children.length === 0){
+    if(!summary.children.length){
 
         summary.innerHTML =
             "<p>Vastauksia ei ole vielä annettu.</p>";
@@ -1797,50 +2294,41 @@ function buildSummary(){
     }
 }
 
-
 /* =========================================================
-   LOMAKKEEN TYHJENNYS
-   ========================================================= */
+   TYHJENNYS
+========================================================= */
 
 function clearForm(){
 
-    const confirmed = window.confirm(
-        "Haluatko varmasti tyhjentää kaikki lomakkeelle antamasi tiedot?"
-    );
+    const confirmation =
+        confirm(
+            "Haluatko varmasti tyhjentää kaikki lomakkeen vastaukset?"
+        );
 
-    if(!confirmed){
+    if(!confirmation){
         return;
     }
 
-    localStorage.removeItem(storageKey);
+    document
+        .getElementById("healthForm")
+        .reset();
 
-    document.getElementById("healthForm").reset();
+    document
+        .querySelectorAll(".followup")
+        .forEach(item=>{
+            item.classList.remove("visible");
+        });
 
     currentPage = 0;
 
-    showPage(currentPage);
+    showPage(0);
 }
-
-
-/* =========================================================
-   AUTOMAATTINEN TALLENNUS
-   ========================================================= */
-
-document
-    .getElementById("healthForm")
-    .addEventListener("input", saveForm);
-
-document
-    .getElementById("healthForm")
-    .addEventListener("change", saveForm);
-
 
 /* =========================================================
    KÄYNNISTYS
-   ========================================================= */
+========================================================= */
 
-loadForm();
-showPage(currentPage);
+showPage(0);
 
 </script>
 
